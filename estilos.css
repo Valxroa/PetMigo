@@ -1,0 +1,5541 @@
+/* ========================================================= 
+
+<link rel="preconnect" href="https://fonts.googleapis.com"> 
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet"> 
+========================================================= */ 
+
+/* ========================================================= 
+1. VARIABLES 
+Cada color de la paleta se define UNA sola vez aquí. 
+Para cambiar un tono, cámbialo en este bloque. 
+========================================================= */ 
+
+:root { 
+/* Colores base */ 
+--verde: #ABE6A1; 
+--lila: #CDB4DB; 
+--azul: #BDE0FE; 
+--rosa: #FFB7B2; 
+--amarillo: #FFEEA7; 
+
+--crema: #FFFDF7; 
+--blanco: #FFFFFF; 
+
+--verde-claro: #EAF7EF; 
+--lila-claro: #F1E8F7; 
+--azul-claro: #E6F2FD; 
+--rosa-claro: #FFE6E4; 
+--amarillo-claro: #FFF8D6; 
+
+--trazo: #2F6B5A; 
+--trazo-suave: #B9DCCB; 
+
+--texto: #2E3A34; 
+--texto-suave: #55625B; /* más oscuro que antes: mejor contraste */ 
+--placeholder: #6F7B74; 
+
+--verde-oscuro: #245A35; 
+--lila-oscuro: #654778; 
+
+--rojo: #A63A34; /* rojo suave: texto sobre fondos rosa */ 
+
+/* Botones (tonos pastel con texto oscuro) */ 
+--btn-verde: #8BCF96; 
+--btn-verde-hover: #75C282; 
+--btn-verde-texto: #17402A; 
+--btn-lila: #CDB4DB; 
+--btn-lila-hover: #B692CB; 
+--btn-lila-texto: #3F2650; 
+--btn-rosa: #FFD3CF; 
+--btn-rosa-hover: #FFB7B2; 
+--btn-rosa-borde: #F2AAA4; 
+
+/* Adornos del fondo (huellas, corazones, ramitas, brillos) */ 
+--deco-huella-arena: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='%23F0B77A' fill-opacity='0.8' transform='rotate(-15 30 30)'%3E%3Cellipse cx='30' cy='38' rx='11' ry='9'/%3E%3Ccircle cx='16' cy='25' r='5'/%3E%3Ccircle cx='25' cy='16' r='5'/%3E%3Ccircle cx='36' cy='16' r='5'/%3E%3Ccircle cx='45' cy='25' r='5'/%3E%3C/g%3E%3C/svg%3E"); 
+--deco-huella-azul: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='%237FBFEA' fill-opacity='0.85' transform='rotate(15 30 30)'%3E%3Cellipse cx='30' cy='38' rx='11' ry='9'/%3E%3Ccircle cx='16' cy='25' r='5'/%3E%3Ccircle cx='25' cy='16' r='5'/%3E%3Ccircle cx='36' cy='16' r='5'/%3E%3Ccircle cx='45' cy='25' r='5'/%3E%3C/g%3E%3C/svg%3E"); 
+--deco-hueso: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='%23F0B77A' fill-opacity='.85' transform='translate(30 30) rotate(-30)'%3E%3Crect x='-20' y='-6' width='40' height='12' rx='4'/%3E%3Ccircle cx='-21' cy='-6.5' r='7'/%3E%3Ccircle cx='-21' cy='6.5' r='7'/%3E%3Ccircle cx='21' cy='-6.5' r='7'/%3E%3Ccircle cx='21' cy='6.5' r='7'/%3E%3C/g%3E%3C/svg%3E"); 
+--deco-pelota: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg transform='translate(30 30)'%3E%3Ccircle r='19' fill='%237FBFEA' fill-opacity='.85'/%3E%3Cpath d='M-12 -14 Q-3 0 -12 14 M12 -14 Q3 0 12 14' fill='none' stroke='%23fff' stroke-opacity='.85' stroke-width='2.4' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E"); 
+--deco-ramita: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='90' viewBox='0 0 70 90'%3E%3Cpath d='M35 88 C33 60 36 36 40 8' stroke='%236FBF7A' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3Cg fill='%238FD28F'%3E%3Cellipse cx='24' cy='62' rx='11' ry='5' transform='rotate(-35 24 62)'/%3E%3Cellipse cx='47' cy='50' rx='11' ry='5' transform='rotate(35 47 50)'/%3E%3Cellipse cx='25' cy='36' rx='10' ry='4.5' transform='rotate(-35 25 36)'/%3E%3Cellipse cx='50' cy='26' rx='10' ry='4.5' transform='rotate(35 50 26)'/%3E%3Cellipse cx='40' cy='10' rx='8' ry='4' transform='rotate(75 40 10)'/%3E%3C/g%3E%3C/svg%3E"); 
+--deco-brillo: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M20 2 L24 16 L38 20 L24 24 L20 38 L16 24 L2 20 L16 16Z' fill='%23F2C94C' fill-opacity='0.9'/%3E%3C/svg%3E"); 
+
+/* Ancho de la barra lateral (para ubicar los adornos) */ 
+--sb: 255px; 
+
+/* Íconos de línea (estilo del mockup) */ 
+--ico-casa: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z'/%3E%3C/svg%3E"); 
+--ico-huella: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 12.5c-2.6 0-5 2.7-5 5 0 1.6 1.2 2.3 2.5 2.3 1 0 1.6-.4 2.5-.4s1.5.4 2.5.4c1.3 0 2.5-.7 2.5-2.3 0-2.3-2.4-5-5-5z'/%3E%3Ccircle cx='5.5' cy='11' r='1.8'/%3E%3Ccircle cx='9' cy='6.5' r='1.8'/%3E%3Ccircle cx='15' cy='6.5' r='1.8'/%3E%3Ccircle cx='18.5' cy='11' r='1.8'/%3E%3C/svg%3E"); 
+--ico-huella-llena: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg fill='black' stroke='none'%3E%3Cellipse cx='12' cy='16' rx='5.5' ry='4.5'/%3E%3Ccircle cx='5.5' cy='11' r='2.2'/%3E%3Ccircle cx='9' cy='6' r='2.2'/%3E%3Ccircle cx='15' cy='6' r='2.2'/%3E%3Ccircle cx='18.5' cy='11' r='2.2'/%3E%3C/g%3E%3C/svg%3E"); 
+--ico-salud: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7z'/%3E%3Cpath d='M3.2 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.3'/%3E%3C/svg%3E"); 
+--ico-cita-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2'/%3E%3Cpath d='M16 2v4M8 2v4M3 10h18m-12 6 2 2 4-4'/%3E%3C/svg%3E"); 
+--ico-tazon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 11h18c0 5-3.5 8-9 8s-9-3-9-8z'/%3E%3Cpath d='M8 11c0-2 1.5-3 4-3s4 1 4 3M8 22h8'/%3E%3C/svg%3E"); 
+--ico-calendario: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2'/%3E%3Cpath d='M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01'/%3E%3C/svg%3E"); 
+--ico-campana: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9'/%3E%3Cpath d='M10.3 21a1.94 1.94 0 0 0 3.4 0'/%3E%3C/svg%3E"); 
+--ico-usuario: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='8' r='4'/%3E%3Cpath d='M4 21c0-4 3.6-7 8-7s8 3 8 7'/%3E%3C/svg%3E"); 
+--ico-salida: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9'/%3E%3C/svg%3E"); 
+--ico-jeringa: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m18 2 4 4M17 7l3-3M19 9 8.7 19.3c-1 1-2.5 1-3.4 0l-.6-.6c-1-1-1-2.5 0-3.4L15 5M9 11l4 4M5 19l-3 3M14 4l6 6'/%3E%3C/svg%3E"); 
+--ico-portapapeles: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='8' y='2' width='8' height='4' rx='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2M9 12h6M9 16h6'/%3E%3C/svg%3E"); 
+--ico-pastilla: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7zM8.5 8.5l7 7'/%3E%3C/svg%3E"); 
+--ico-sobre: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='4' width='20' height='16' rx='2'/%3E%3Cpath d='m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7'/%3E%3C/svg%3E"); 
+--ico-candado: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='11' width='18' height='11' rx='2'/%3E%3Cpath d='M7 11V7a5 5 0 0 1 10 0v4'/%3E%3C/svg%3E"); 
+--ico-telefono: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z'/%3E%3C/svg%3E"); 
+--ico-bombilla: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5M9 18h6M10 22h4'/%3E%3C/svg%3E"); 
+--ico-brillo: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3l2.4 6.1L21 12l-6.6 2.9L12 21l-2.4-6.1L3 12l6.6-2.9z'/%3E%3C/svg%3E"); 
+--ico-etiqueta: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12.6 2.6a2 2 0 0 0-1.4-.6H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4z'/%3E%3Ccircle cx='7.5' cy='7.5' r='.6'/%3E%3C/svg%3E"); 
+--ico-pastel: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1M2 21h20M7 8v3M12 8v3M17 8v3M7 4h.01M12 4h.01M17 4h.01'/%3E%3C/svg%3E"); 
+--ico-balanza: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1zM2 16l3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1zM7 21h10M12 3v18M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2'/%3E%3C/svg%3E"); 
+/* Patrón suave que rellena todo el fondo */ 
+--deco-rayitas: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='54' height='40' viewBox='0 0 54 40'%3E%3Cg stroke='%235BB89A' stroke-width='3.5' stroke-linecap='round' fill='none'%3E%3Cpath d='M8 30 L18 8'/%3E%3Cpath d='M24 34 L26 6'/%3E%3Cpath d='M40 30 L32 8'/%3E%3C/g%3E%3C/svg%3E"); 
+--borde: #DDEBE2; 
+
+--radio-grande: 22px; 
+--radio: 16px; 
+--radio-chico: 12px; 
+
+--sombra: 0 5px 16px rgba(47, 107, 90, 0.10); 
+--sombra-hover: 0 10px 24px rgba(47, 107, 90, 0.15); 
+
+--fuente-titulos: "Poppins", system-ui, sans-serif; 
+--fuente-texto: "Nunito", system-ui, sans-serif; 
+
+/* ----- Temas de color: cada uno se define una sola vez ----- */ 
+
+/* Verde */ 
+--verde-1: #F2FBF4; 
+--verde-2: #E8F5EB; 
+--verde-borde: #CBE5D1; 
+--verde-acento: #8BCF96; 
+--verde-circulo: #ABE6A1; 
+--verde-icono: #DCF2E0; 
+--verde-titulo: #245A35; 
+--verde-halo: rgba(139, 207, 150, 0.38); 
+
+/* Azul */ 
+--azul-1: #F5FAFF; 
+--azul-2: #E4EFFC; 
+--azul-borde: #C3DDF5; 
+--azul-acento: #8CBFEA; 
+--azul-circulo: #BDE0FE; 
+--azul-icono: #D8E8F8; 
+--azul-titulo: #3A6A94; 
+--azul-halo: rgba(140, 191, 234, 0.40); 
+
+/* Lila */ 
+--lila-1: #FBF7FD; 
+--lila-2: #F0E6F7; 
+--lila-borde: #DCC9E8; 
+--lila-acento: #B692CB; 
+--lila-circulo: #CDB4DB; 
+--lila-icono: #EADCF3; 
+--lila-titulo: #654778; 
+--lila-halo: rgba(182, 146, 203, 0.38); 
+
+/* Amarillo */ 
+--amarillo-1: #FFFDF0; 
+--amarillo-2: #FFF6D6; 
+--amarillo-borde: #F0E2A6; 
+--amarillo-acento: #E7C95A; 
+--amarillo-circulo: #FFEEA7; 
+--amarillo-icono: #FFF0B8; 
+--amarillo-titulo: #7A6318; 
+--amarillo-halo: rgba(231, 201, 90, 0.40); 
+
+/* Rosa */ 
+--rosa-1: #FFF8F7; 
+--rosa-2: #FFEAE8; 
+--rosa-borde: #F5CBC7; 
+--rosa-acento: #F09A94; 
+--rosa-circulo: #FFB7B2; 
+--rosa-icono: #FFDCD9; 
+--rosa-titulo: #A8504A; 
+--rosa-halo: rgba(240, 154, 148, 0.38); 
+
+/* Degradados de cada tema */ 
+--grad-verde: linear-gradient(135deg, var(--verde-1) 0%, var(--verde-2) 100%); 
+--grad-azul: linear-gradient(135deg, var(--azul-1) 0%, var(--azul-2) 100%); 
+--grad-lila: linear-gradient(135deg, var(--lila-1) 0%, var(--lila-2) 100%); 
+--grad-amarillo: linear-gradient(135deg, var(--amarillo-1) 0%, var(--amarillo-2) 100%); 
+--grad-rosa: linear-gradient(135deg, var(--rosa-1) 0%, var(--rosa-2) 100%); 
+
+/* Tema por defecto de las tarjetas (verde) */ 
+--c-grad: var(--grad-verde); 
+--c-borde: var(--verde-borde); 
+--c-acento: var(--verde-acento); 
+--c-circulo: var(--verde-circulo); 
+--c-icono: var(--verde-icono); 
+--c-titulo: var(--verde-titulo); 
+} 
+
+
+/* ========================================================= 
+2. TEMAS DE COLOR 
+Puedes usar las clases .tema-verde, .tema-azul, .tema-lila, 
+.tema-amarillo y .tema-rosa directamente en el HTML. 
+Las clases existentes siguen funcionando igual. 
+Cada tarjeta define sus colores; los hijos los heredan. 
+========================================================= */ 
+
+/* Verde */ 
+.tema-verde, 
+.consejo-card, 
+.summary-card:nth-child(1), 
+.salud-card:nth-child(3), 
+.mascota-card, 
+.actividad-card { 
+--c-grad: var(--grad-verde); 
+--c-borde: var(--verde-borde); 
+--c-acento: var(--verde-acento); 
+--c-circulo: var(--verde-circulo); 
+--c-icono: var(--verde-icono); 
+--c-titulo: var(--verde-titulo); 
+} 
+
+/* Amarillo */ 
+.tema-amarillo, 
+.dato-card, 
+.summary-card:nth-child(3), 
+.alimentacion-card, 
+.recordatorio-actividad, 
+.mascota-card:nth-child(5n+4), 
+.dato:nth-child(5) { 
+--c-grad: var(--grad-amarillo); 
+--c-borde: var(--amarillo-borde); 
+--c-acento: var(--amarillo-acento); 
+--c-circulo: var(--amarillo-circulo); 
+--c-icono: var(--amarillo-icono); 
+--c-titulo: var(--amarillo-titulo); 
+} 
+
+/* Lila */ 
+.tema-lila, 
+.summary-card:nth-child(2), 
+.salud-card:nth-child(2), 
+.recordatorio-card, 
+.desparasitacion-card, 
+.mascota-card:nth-child(5n+3), 
+.dato:nth-child(2), 
+.perfil-usuario-dato:nth-child(2) { 
+--c-grad: var(--grad-lila); 
+--c-borde: var(--lila-borde); 
+--c-acento: var(--lila-acento); 
+--c-circulo: var(--lila-circulo); 
+--c-icono: var(--lila-icono); 
+--c-titulo: var(--lila-titulo); 
+} 
+
+/* Azul */ 
+.tema-azul, 
+.salud-card:nth-child(1), 
+.vacuna-card, 
+.cita-card, 
+.historial-card, 
+.calendario-actividad, 
+.mascota-card:nth-child(5n+2), 
+.actividad-card:nth-child(2), 
+.dato:nth-child(3), 
+.perfil-usuario-dato:nth-child(3) { 
+--c-grad: var(--grad-azul); 
+--c-borde: var(--azul-borde); 
+--c-acento: var(--azul-acento); 
+--c-circulo: var(--azul-circulo); 
+--c-icono: var(--azul-icono); 
+--c-titulo: var(--azul-titulo); 
+} 
+
+/* Rosa */ 
+.tema-rosa, 
+.mascota-card:nth-child(5n+5), 
+.dato:nth-child(4), 
+.perfil-usuario-dato:nth-child(4) { 
+--c-grad: var(--grad-rosa); 
+--c-borde: var(--rosa-borde); 
+--c-acento: var(--rosa-acento); 
+--c-circulo: var(--rosa-circulo); 
+--c-icono: var(--rosa-icono); 
+--c-titulo: var(--rosa-titulo); 
+} 
+
+
+/* ========================================================= 
+3. SISTEMA DE TARJETAS 
+Degradado + borde suave + franja lateral + círculo decorativo 
+========================================================= */ 
+
+.contenido-diario-card, 
+.summary-card, 
+.mascota-card, 
+.salud-card, 
+.vacuna-card, 
+.cita-card, 
+.alimentacion-card, 
+.recordatorio-card, 
+.desparasitacion-card, 
+.historial-card, 
+.actividad-card, 
+.calendario-actividad, 
+.perfil-usuario-dato, 
+.dato, 
+.welcome-card, 
+.top-header, 
+.page-header { 
+position: relative; 
+overflow: hidden; 
+
+background: var(--c-grad); 
+border: 1px solid var(--c-borde); 
+border-left: 5px solid var(--c-acento); 
+border-radius: var(--radio-grande); 
+
+box-shadow: var(--sombra); 
+
+transition: transform 0.3s ease, box-shadow 0.3s ease; 
+} 
+
+.contenido-diario-card::after, 
+.summary-card::after, 
+.mascota-card::after, 
+.salud-card::after, 
+.vacuna-card::after, 
+.cita-card::after, 
+.alimentacion-card::after, 
+.recordatorio-card::after, 
+.desparasitacion-card::after, 
+.historial-card::after, 
+.actividad-card::after, 
+.calendario-actividad::after, 
+.perfil-usuario-dato::after, 
+.dato::after, 
+.welcome-card::after, 
+.top-header::after, 
+.page-header::after { 
+content: ""; 
+position: absolute; 
+width: 95px; 
+height: 95px; 
+right: -30px; 
+bottom: -40px; 
+border-radius: 50%; 
+background: var(--c-circulo); 
+opacity: 0.35; 
+pointer-events: none; 
+} 
+
+/* El contenido siempre queda por encima del círculo */ 
+.contenido-diario-card > *, 
+.summary-card > *, 
+.mascota-card > *, 
+.salud-card > *, 
+.vacuna-card > *, 
+.cita-card > *, 
+.alimentacion-card > *, 
+.recordatorio-card > *, 
+.desparasitacion-card > *, 
+.historial-card > *, 
+.actividad-card > *, 
+.calendario-actividad > *, 
+.perfil-usuario-dato > *, 
+.dato > *, 
+.welcome-card > *, 
+.top-header > *, 
+.page-header > * { 
+position: relative; 
+z-index: 2; 
+} 
+
+.contenido-diario-card:hover, 
+.summary-card:hover, 
+.mascota-card:hover, 
+.salud-card:hover, 
+.vacuna-card:hover, 
+.cita-card:hover, 
+.alimentacion-card:hover, 
+.recordatorio-card:hover, 
+.desparasitacion-card:hover, 
+.historial-card:hover, 
+.calendario-actividad:hover, 
+.perfil-usuario-dato:hover { 
+transform: translateY(-5px); 
+box-shadow: var(--sombra-hover); 
+} 
+
+/* Tarjetas contenedoras: no se elevan al pasar el cursor */ 
+.actividad-card:hover, 
+.dato:hover, 
+.welcome-card:hover, 
+.top-header:hover, 
+.page-header:hover { 
+transform: none; 
+} 
+
+
+/* ========================================================= 
+4. ICONOS (cuadrado redondeado con sombra) 
+========================================================= */ 
+
+.contenido-diario-icono, 
+.actividad-icon, 
+.actividad-tipo-icono, 
+.vacuna-icon, 
+.cita-icon, 
+.alimentacion-icon, 
+.recordatorio-icon, 
+.historial-icono, 
+.salud-icon, 
+.perfil-usuario-icono { 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+flex-shrink: 0; 
+
+background: var(--c-icono); 
+border-radius: 17px; 
+box-shadow: 0 4px 10px rgba(47, 107, 90, 0.10); 
+} 
+
+.contenido-diario-icono { 
+width: 54px; 
+height: 54px; 
+min-width: 54px; 
+font-size: 1.75rem; 
+} 
+
+.actividad-icon { 
+width: 44px; 
+height: 44px; 
+font-size: 1.3rem; 
+} 
+
+.actividad-tipo-icono { 
+width: 46px; 
+height: 46px; 
+font-size: 1.375rem; 
+} 
+
+.vacuna-icon, 
+.cita-icon, 
+.alimentacion-icon, 
+.recordatorio-icon, 
+.historial-icono { 
+width: 54px; 
+height: 54px; 
+min-width: 54px; 
+font-size: 1.75rem; 
+} 
+
+.salud-icon { 
+width: 66px; 
+height: 66px; 
+min-width: 66px; 
+margin-bottom: 15px; 
+font-size: 2rem; 
+} 
+
+.perfil-usuario-icono { 
+width: 48px; 
+height: 48px; 
+font-size: 1.45rem; 
+} 
+
+
+/* ========================================================= 
+5. RESETEO GENERAL 
+========================================================= */ 
+
+* { 
+margin: 0; 
+padding: 0; 
+box-sizing: border-box; 
+} 
+
+html { 
+scroll-behavior: smooth; 
+} 
+
+body { 
+position: relative; 
+font-family: var(--fuente-texto); 
+/* Transparente a propósito: el color base vive en html y así se ven 
+las capas decorativas del fondo (si body fuera sólido, las taparía) */ 
+background-color: transparent; 
+color: var(--texto); 
+line-height: 1.5; 
+} 
+
+:root { 
+/* ----- Fondo ilustrado ----- */ 
+--deco-patron-mascotas: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='440' height='440' viewBox='0 0 440 440'%3E%3Cg transform='translate(62 58) rotate(-20) scale(1.0)'%3E%3Cg fill='%23F4B97A' fill-opacity='0.55'%3E%3Cellipse cx='0' cy='6' rx='9' ry='7.5'/%3E%3Ccircle cx='-11' cy='-5' r='4'/%3E%3Ccircle cx='-4' cy='-12' r='4'/%3E%3Ccircle cx='4' cy='-12' r='4'/%3E%3Ccircle cx='11' cy='-5' r='4'/%3E%3C/g%3E%3C/g%3E%3Cg transform='translate(196 44) rotate(24) scale(1.0)'%3E%3Cg fill='%23F2D36B' fill-opacity='0.75'%3E%3Crect x='-13' y='-4' width='26' height='8' rx='3'/%3E%3Ccircle cx='-14' cy='-4.2' r='4.8'/%3E%3Ccircle cx='-14' cy='4.2' r='4.8'/%3E%3Ccircle cx='14' cy='-4.2' r='4.8'/%3E%3Ccircle cx='14' cy='4.2' r='4.8'/%3E%3C/g%3E%3C/g%3E%3Cg transform='translate(330 72) rotate(0) scale(0.9)'%3E%3Ccircle r='11' fill='%236FC3C9' fill-opacity='0.6'/%3E%3Cpath d='M-7.5 -8 Q-1 0 -7.5 8 M7.5 -8 Q1 0 7.5 8' fill='none' stroke='%23fff' stroke-opacity='.85' stroke-width='1.6' stroke-linecap='round'/%3E%3C/g%3E%3Cg transform='translate(405 38) rotate(0) scale(0.7)'%3E%3Cpath fill='%23F2D36B' fill-opacity='0.85' d='M0 -12 L3 -3 L12 0 L3 3 L0 12 L-3 3 L-12 0 L-3 -3Z'/%3E%3C/g%3E%3Cg transform='translate(100 178) rotate(-8) scale(1.1)'%3E%3Cg fill='%23F4B97A' fill-opacity='0.5'%3E%3Ccircle cx='0' cy='3' r='12'/%3E%3Cpath d='M-11 -2 L-10 -15 L-1 -8Z M11 -2 L10 -15 L1 -8Z'/%3E%3C/g%3E%3Ccircle cx='-4.5' cy='2' r='1.8' fill='%23fff' fill-opacity='.9'/%3E%3Ccircle cx='4.5' cy='2' r='1.8' fill='%23fff' fill-opacity='.9'/%3E%3Cellipse cx='0' cy='6.5' rx='1.6' ry='1.1' fill='%23fff' fill-opacity='.9'/%3E%3C/g%3E%3Cg transform='translate(250 150) rotate(0) scale(1.0)'%3E%3Ccircle r='11' fill='%237FCB8A' fill-opacity='0.55'/%3E%3Cpath d='M-7.5 -8 Q-1 0 -7.5 8 M7.5 -8 Q1 0 7.5 8' fill='none' stroke='%23fff' stroke-opacity='.85' stroke-width='1.6' stroke-linecap='round'/%3E%3C/g%3E%3Cg transform='translate(382 200) rotate(-14) scale(1.0)'%3E%3Cg fill='%236FC3C9' fill-opacity='0.65'%3E%3Cellipse cx='-4' cy='0' rx='13' ry='8'/%3E%3Cpath d='M7 0 L19 -8 L19 8Z'/%3E%3C/g%3E%3Ccircle cx='-12' cy='-2' r='1.8' fill='%23fff' fill-opacity='.9'/%3E%3C/g%3E%3Cg transform='translate(42 300) rotate(6) scale(1.1)'%3E%3Cg fill='%236FC3C9' fill-opacity='0.55'%3E%3Ccircle cx='0' cy='2' r='11'/%3E%3Cellipse cx='-12' cy='1' rx='4.5' ry='8' transform='rotate(14 -12 1)'/%3E%3Cellipse cx='12' cy='1' rx='4.5' ry='8' transform='rotate(-14 12 1)'/%3E%3C/g%3E%3Ccircle cx='-4' cy='0' r='1.7' fill='%23fff' fill-opacity='.9'/%3E%3Ccircle cx='4' cy='0' r='1.7' fill='%23fff' fill-opacity='.9'/%3E%3Cellipse cx='0' cy='6' rx='3' ry='2' fill='%23fff' fill-opacity='.9'/%3E%3C/g%3E%3Cg transform='translate(300 268) rotate(18) scale(1.1)'%3E%3Cg fill='%237FBFEA' fill-opacity='0.6'%3E%3Cellipse cx='0' cy='6' rx='9' ry='7.5'/%3E%3Ccircle cx='-11' cy='-5' r='4'/%3E%3Ccircle cx='-4' cy='-12' r='4'/%3E%3Ccircle cx='4' cy='-12' r='4'/%3E%3Ccircle cx='11' cy='-5' r='4'/%3E%3C/g%3E%3C/g%3E%3Cg transform='translate(168 258) rotate(0) scale(0.8)'%3E%3Cpath fill='%23F2D36B' fill-opacity='0.85' d='M0 -12 L3 -3 L12 0 L3 3 L0 12 L-3 3 L-12 0 L-3 -3Z'/%3E%3C/g%3E%3Cg transform='translate(196 372) rotate(-30) scale(1.0)'%3E%3Cg fill='%23F4B97A' fill-opacity='0.55'%3E%3Crect x='-13' y='-4' width='26' height='8' rx='3'/%3E%3Ccircle cx='-14' cy='-4.2' r='4.8'/%3E%3Ccircle cx='-14' cy='4.2' r='4.8'/%3E%3Ccircle cx='14' cy='-4.2' r='4.8'/%3E%3Ccircle cx='14' cy='4.2' r='4.8'/%3E%3C/g%3E%3C/g%3E%3Cg transform='translate(372 340) rotate(-12) scale(0.8)'%3E%3Cg fill='%23F4B97A' fill-opacity='0.6'%3E%3Cellipse cx='0' cy='6' rx='9' ry='7.5'/%3E%3Ccircle cx='-11' cy='-5' r='4'/%3E%3Ccircle cx='-4' cy='-12' r='4'/%3E%3Ccircle cx='4' cy='-12' r='4'/%3E%3Ccircle cx='11' cy='-5' r='4'/%3E%3C/g%3E%3C/g%3E%3Cg transform='translate(300 404) rotate(40) scale(1.0)'%3E%3Cpath d='M0 14 C-1 4 1 -6 3 -14' stroke='%237FCB8A' stroke-opacity='0.7' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3Cg fill='%237FCB8A' fill-opacity='0.7'%3E%3Cellipse cx='-5' cy='6' rx='5.5' ry='2.6' transform='rotate(-35 -5 6)'/%3E%3Cellipse cx='6' cy='0' rx='5.5' ry='2.6' transform='rotate(35 6 0)'/%3E%3Cellipse cx='-4' cy='-7' rx='5' ry='2.4' transform='rotate(-35 -4 -7)'/%3E%3C/g%3E%3C/g%3E%3Cg transform='translate(122 330) rotate(-8) scale(0.7)'%3E%3Cg fill='%237FCB8A' fill-opacity='0.6'%3E%3Cellipse cx='0' cy='6' rx='9' ry='7.5'/%3E%3Ccircle cx='-11' cy='-5' r='4'/%3E%3Ccircle cx='-4' cy='-12' r='4'/%3E%3Ccircle cx='4' cy='-12' r='4'/%3E%3Ccircle cx='11' cy='-5' r='4'/%3E%3C/g%3E%3C/g%3E%3Cg transform='translate(150 108) rotate(0) scale(1)'%3E%3Ccircle r='3' fill='%237FBFEA' fill-opacity='0.7'/%3E%3C/g%3E%3Cg transform='translate(270 38) rotate(0) scale(1)'%3E%3Ccircle r='3' fill='%23F4B97A' fill-opacity='0.7'/%3E%3C/g%3E%3Cg transform='translate(420 120) rotate(0) scale(1.2)'%3E%3Ccircle r='3' fill='%237FCB8A' fill-opacity='0.7'/%3E%3C/g%3E%3Cg transform='translate(20 240) rotate(0) scale(1)'%3E%3Ccircle r='3' fill='%23F4B97A' fill-opacity='0.7'/%3E%3C/g%3E%3Cg transform='translate(235 232) rotate(0) scale(1.2)'%3E%3Ccircle r='3' fill='%236FC3C9' fill-opacity='0.7'/%3E%3C/g%3E%3Cg transform='translate(100 420) rotate(0) scale(1)'%3E%3Ccircle r='3' fill='%23F2D36B' fill-opacity='0.8'/%3E%3C/g%3E%3Cg transform='translate(430 290) rotate(0) scale(1)'%3E%3Ccircle r='3' fill='%237FBFEA' fill-opacity='0.7'/%3E%3C/g%3E%3Cg transform='translate(340 150) rotate(0) scale(0.8)'%3E%3Ccircle r='3' fill='%23F2D36B' fill-opacity='0.8'/%3E%3C/g%3E%3C/svg%3E"); 
+--deco-colinas: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 220' preserveAspectRatio='none'%3E%3Cpath fill='%238FD0F2' fill-opacity='.45' d='M0 90 C180 20 360 20 540 80 C720 140 900 140 1080 70 C1230 20 1340 30 1440 70 L1440 220 L0 220Z'/%3E%3Cpath fill='%23B8EBD2' fill-opacity='.60' d='M0 130 C160 80 320 90 480 130 C640 170 820 170 1000 120 C1160 80 1300 90 1440 130 L1440 220 L0 220Z'/%3E%3Cpath fill='%2386CF85' fill-opacity='.55' d='M0 170 C200 130 380 140 560 170 C740 200 920 200 1100 165 C1250 140 1350 150 1440 175 L1440 220 L0 220Z'/%3E%3C/svg%3E"); 
+--deco-ondas-arriba: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 140' preserveAspectRatio='none'%3E%3Cpath fill='%23FFE7A3' fill-opacity='.45' d='M0 0 H1440 V40 C1240 90 1040 70 860 40 C680 10 480 20 300 50 C180 70 80 70 0 45Z'/%3E%3Cpath fill='%23BFE4F9' fill-opacity='.45' d='M0 0 H1440 V70 C1260 120 1080 110 900 70 C720 30 540 30 360 70 C220 100 100 100 0 70Z'/%3E%3C/svg%3E"); 
+--deco-huella-gigante-lila: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-20 -20 40 40'%3E%3Cg transform='rotate(14)'%3E%3Cg fill='%237FBFEA' fill-opacity='0.2'%3E%3Cellipse cx='0' cy='6' rx='9' ry='7.5'/%3E%3Ccircle cx='-11' cy='-5' r='4'/%3E%3Ccircle cx='-4' cy='-12' r='4'/%3E%3Ccircle cx='4' cy='-12' r='4'/%3E%3Ccircle cx='11' cy='-5' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); 
+--deco-huella-gigante-rosa: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-20 -20 40 40'%3E%3Cg transform='rotate(-18)'%3E%3Cg fill='%23F4B97A' fill-opacity='0.2'%3E%3Cellipse cx='0' cy='6' rx='9' ry='7.5'/%3E%3Ccircle cx='-11' cy='-5' r='4'/%3E%3Ccircle cx='-4' cy='-12' r='4'/%3E%3Ccircle cx='4' cy='-12' r='4'/%3E%3Ccircle cx='11' cy='-5' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); 
+--deco-rastro: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='780' height='120' viewBox='0 0 780 120'%3E%3Cg transform='translate(48 42) rotate(82) scale(1.1)'%3E%3Cg fill='%234F9A78' fill-opacity='0.18'%3E%3Cellipse cx='0' cy='6' rx='9' ry='7.5'/%3E%3Ccircle cx='-11' cy='-5' r='4'/%3E%3Ccircle cx='-4' cy='-12' r='4'/%3E%3Ccircle cx='4' cy='-12' r='4'/%3E%3Ccircle cx='11' cy='-5' r='4'/%3E%3C/g%3E%3C/g%3E%3Cg transform='translate(122 86) rotate(98) scale(1.1)'%3E%3Cg fill='%234F9A78' fill-opacity='0.23'%3E%3Cellipse cx='0' cy='6' rx='9' ry='7.5'/%3E%3Ccircle cx='-11' cy='-5' r='4'/%3E%3Ccircle cx='-4' cy='-12' r='4'/%3E%3Ccircle cx='4' cy='-12' r='4'/%3E%3Ccircle cx='11' cy='-5' r='4'/%3E%3C/g%3E%3C/g%3E%3Cg transform='translate(196 48) rotate(82) scale(1.1)'%3E%3Cg fill='%234F9A78' fill-opacity='0.27'%3E%3Cellipse cx='0' cy='6' rx='9' ry='7.5'/%3E%3Ccircle cx='-11' cy='-5' r='4'/%3E%3Ccircle cx='-4' cy='-12' r='4'/%3E%3Ccircle cx='4' cy='-12' r='4'/%3E%3Ccircle cx='11' cy='-5' r='4'/%3E%3C/g%3E%3C/g%3E%3Cg transform='translate(270 86) rotate(98) scale(1.1)'%3E%3Cg fill='%234F9A78' fill-opacity='0.32'%3E%3Cellipse cx='0' cy='6' rx='9' ry='7.5'/%3E%3Ccircle cx='-11' cy='-5' r='4'/%3E%3Ccircle cx='-4' cy='-12' r='4'/%3E%3Ccircle cx='4' cy='-12' r='4'/%3E%3Ccircle cx='11' cy='-5' r='4'/%3E%3C/g%3E%3C/g%3E%3Cg transform='translate(344 42) rotate(82) scale(1.1)'%3E%3Cg fill='%234F9A78' fill-opacity='0.37'%3E%3Cellipse cx='0' cy='6' rx='9' ry='7.5'/%3E%3Ccircle cx='-11' cy='-5' r='4'/%3E%3Ccircle cx='-4' cy='-12' r='4'/%3E%3Ccircle cx='4' cy='-12' r='4'/%3E%3Ccircle cx='11' cy='-5' r='4'/%3E%3C/g%3E%3C/g%3E%3Cg transform='translate(418 77) rotate(98) scale(1.1)'%3E%3Cg fill='%234F9A78' fill-opacity='0.41'%3E%3Cellipse cx='0' cy='6' rx='9' ry='7.5'/%3E%3Ccircle cx='-11' cy='-5' r='4'/%3E%3Ccircle cx='-4' cy='-12' r='4'/%3E%3Ccircle cx='4' cy='-12' r='4'/%3E%3Ccircle cx='11' cy='-5' r='4'/%3E%3C/g%3E%3C/g%3E%3Cg transform='translate(492 36) rotate(82) scale(1.1)'%3E%3Cg fill='%234F9A78' fill-opacity='0.46'%3E%3Cellipse cx='0' cy='6' rx='9' ry='7.5'/%3E%3Ccircle cx='-11' cy='-5' r='4'/%3E%3Ccircle cx='-4' cy='-12' r='4'/%3E%3Ccircle cx='4' cy='-12' r='4'/%3E%3Ccircle cx='11' cy='-5' r='4'/%3E%3C/g%3E%3C/g%3E%3Cg transform='translate(566 78) rotate(98) scale(1.1)'%3E%3Cg fill='%234F9A78' fill-opacity='0.51'%3E%3Cellipse cx='0' cy='6' rx='9' ry='7.5'/%3E%3Ccircle cx='-11' cy='-5' r='4'/%3E%3Ccircle cx='-4' cy='-12' r='4'/%3E%3Ccircle cx='4' cy='-12' r='4'/%3E%3Ccircle cx='11' cy='-5' r='4'/%3E%3C/g%3E%3C/g%3E%3Cg transform='translate(640 43) rotate(82) scale(1.1)'%3E%3Cg fill='%234F9A78' fill-opacity='0.55'%3E%3Cellipse cx='0' cy='6' rx='9' ry='7.5'/%3E%3Ccircle cx='-11' cy='-5' r='4'/%3E%3Ccircle cx='-4' cy='-12' r='4'/%3E%3Ccircle cx='4' cy='-12' r='4'/%3E%3Ccircle cx='11' cy='-5' r='4'/%3E%3C/g%3E%3C/g%3E%3Cg transform='translate(714 87) rotate(98) scale(1.1)'%3E%3Cg fill='%234F9A78' fill-opacity='0.6'%3E%3Cellipse cx='0' cy='6' rx='9' ry='7.5'/%3E%3Ccircle cx='-11' cy='-5' r='4'/%3E%3Ccircle cx='-4' cy='-12' r='4'/%3E%3Ccircle cx='4' cy='-12' r='4'/%3E%3Ccircle cx='11' cy='-5' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); 
+} 
+
+@keyframes patron-avanza { 
+from { transform: translate3d(0, 0, 0); } 
+to { transform: translate3d(440px, 440px, 0); } 
+} 
+
+@keyframes adornos-respiran { 
+from { opacity: 0.65; } 
+to { opacity: 1; } 
+} 
+
+/* Capa B (html::after): colinas pastel abajo, ondas arriba, huellas gigantes 
+de marca de agua y un rastro de huellas caminando sobre las colinas. */ 
+html::after { 
+content: ""; 
+position: fixed; 
+inset: 0; 
+z-index: -2; 
+pointer-events: none; 
+
+background-image: 
+var(--deco-rastro), 
+var(--deco-huella-gigante-lila), 
+var(--deco-huella-gigante-rosa), 
+var(--deco-ondas-arriba), 
+var(--deco-colinas); 
+background-repeat: no-repeat, no-repeat, no-repeat, repeat-x, repeat-x; 
+background-size: 860px 130px, 300px 300px, 250px 250px, 100% 150px, 100% 210px; 
+background-position: 
+left calc(var(--sb) + 3%) bottom 8px, 
+right 30px top 10%, 
+left calc(var(--sb) + 30px) top 56%, 
+center top, 
+center bottom; 
+} 
+
+/* Capa A (html::before): malla de color con manchas grandes que se mueven despacio */ 
+html { 
+background-color: #FFFDF7; 
+} 
+
+/* ---------- Capa A: malla de color en movimiento ---------- */ 
+
+@keyframes fondo-deriva { 
+0% { transform: translate3d(0, 0, 0) scale(1); } 
+50% { transform: translate3d(-2.5%, 2%, 0) scale(1.06); } 
+100% { transform: translate3d(2%, -2.5%, 0) scale(1.03); } 
+} 
+
+html::before { 
+content: ""; 
+position: fixed; 
+inset: -8%; 
+z-index: -2; 
+pointer-events: none; 
+
+background-image: 
+radial-gradient(42% 38% at 8% 12%, rgba(150, 220, 175, 0.42) 0%, transparent 70%), 
+radial-gradient(40% 36% at 92% 10%, rgba(255, 220, 140, 0.50) 0%, transparent 70%), 
+radial-gradient(44% 40% at 90% 90%, rgba(150, 205, 245, 0.42) 0%, transparent 70%), 
+radial-gradient(40% 38% at 10% 90%, rgba(255, 236, 160, 0.55) 0%, transparent 70%), 
+radial-gradient(34% 30% at 50% 48%, rgba(170, 225, 215, 0.35) 0%, transparent 72%), 
+linear-gradient(180deg, #FFFDF7 0%, #FFFAEA 100%); 
+
+animation: fondo-deriva 28s ease-in-out infinite alternate; 
+will-change: transform; 
+} 
+
+/* El fondo decorativo va en una capa fija aparte. 
+Es mucho más liviano que background-attachment: fixed. */ 
+/* Capa C (body::before): patrón de mascotas (huellas, huesos, peces, gatos, 
+perros, pelotas, corazones, brillos) que avanza muy despacio en diagonal. 
+La capa es más grande que la pantalla y se desplaza exactamente un "mosaico" 
+(440px), por eso el bucle no tiene saltos. */ 
+body::before { 
+content: ""; 
+position: fixed; 
+inset: -440px; 
+z-index: -1; 
+pointer-events: none; 
+
+background-image: var(--deco-patron-mascotas); 
+background-size: 440px 440px; 
+
+animation: patron-avanza 160s linear infinite; 
+will-change: transform; 
+} 
+
+/* Capa D (body::after): adornos en los costados: 8 a la derecha, 7 a la izquierda (junto a la 
+barra lateral), 4 arriba y 4 abajo. Colores alternados. Capa fija 
+detrás del contenido. */ 
+body::after { 
+background-repeat: no-repeat; 
+
+background-image: 
+/* ----- DERECHA (8) ----- */ 
+var(--deco-huella-arena), /* 1 */ 
+var(--deco-brillo), /* 2 */ 
+var(--deco-pelota), /* 3 */ 
+var(--deco-ramita), /* 4 */ 
+var(--deco-huella-azul), /* 5 */ 
+var(--deco-rayitas), /* 6 */ 
+var(--deco-hueso), /* 7 */ 
+var(--deco-huella-arena), /* 8 */ 
+/* ----- IZQUIERDA, junto a la barra lateral (7) ----- */ 
+var(--deco-ramita), /* 9 */ 
+var(--deco-hueso), /* 10 */ 
+var(--deco-huella-azul), /* 11 */ 
+var(--deco-brillo), /* 12 */ 
+var(--deco-rayitas), /* 13 */ 
+var(--deco-huella-arena), /* 14 */ 
+var(--deco-pelota), /* 15 */ 
+/* ----- FILA SUPERIOR (4) ----- */ 
+var(--deco-brillo), /* 16 */ 
+var(--deco-huella-azul), /* 17 */ 
+var(--deco-hueso), /* 18 */ 
+var(--deco-rayitas), /* 19 */ 
+/* ----- FILA INFERIOR (4) ----- */ 
+var(--deco-huella-arena), /* 20 */ 
+var(--deco-brillo), /* 21 */ 
+var(--deco-pelota), /* 22 */ 
+var(--deco-ramita); /* 23 */ 
+
+background-size: 
+/* derecha */ 
+64px, 34px, 46px, 66px, 54px, 50px, 48px, 56px, 
+/* izquierda */ 
+62px, 46px, 52px, 30px, 48px, 54px, 44px, 
+/* arriba */ 
+26px, 30px, 28px, 36px, 
+/* abajo */ 
+30px, 26px, 28px, 42px; 
+
+background-position: 
+/* derecha: zigzag entre 22px y 90px del borde */ 
+right 26px top 3%, 
+right 96px top 11%, 
+right 22px top 22%, 
+right 84px top 33%, 
+right 26px top 46%, 
+right 92px top 57%, 
+right 24px top 68%, 
+right 30px bottom 4%, 
+/* izquierda: zigzag pegado a la barra lateral */ 
+left calc(var(--sb) + 20px) top 6%, 
+left calc(var(--sb) + 62px) top 18%, 
+left calc(var(--sb) + 20px) top 31%, 
+left calc(var(--sb) + 66px) top 44%, 
+left calc(var(--sb) + 22px) top 56%, 
+left calc(var(--sb) + 60px) top 69%, 
+left calc(var(--sb) + 24px) bottom 5%, 
+/* arriba: repartidos en la franja del contenido */ 
+left 36% top 10px, 
+left 50% top 8px, 
+left 64% top 10px, 
+left 78% top 8px, 
+/* abajo */ 
+left 34% bottom 8px, 
+left 47% bottom 10px, 
+left 60% bottom 8px, 
+left 74% bottom 4px; 
+} 
+
+@media (max-width: 1000px) { 
+
+:root { 
+--sb: 210px; 
+} 
+} 
+
+@media (max-width: 700px) { 
+
+body::after { 
+display: none; 
+} 
+} 
+
+h1, 
+h2, 
+h3, 
+h4 { 
+font-family: var(--fuente-titulos); 
+color: var(--texto); 
+} 
+
+a { 
+color: inherit; 
+} 
+
+button, 
+input, 
+select, 
+textarea { 
+font-family: inherit; 
+} 
+
+/* Contorno de foco: solo al navegar con teclado */ 
+:focus-visible { 
+outline: 3px solid rgba(36, 90, 53, 0.55); 
+outline-offset: 2px; 
+} 
+
+
+/* ========================================================= 
+6. CONTENEDORES TIPO PANEL (suaves) 
+========================================================= */ 
+
+.login-card, 
+.calendario-card, 
+.vacunas-section, 
+.citas-section, 
+.alimentacion-section, 
+.desparasitacion-seccion, 
+.desparasitacion-formulario, 
+.historial-formulario, 
+.form-card, 
+.mascota-perfil-card, 
+.perfil-usuario-card { 
+background: linear-gradient(160deg, var(--verde-1) 0%, var(--verde-2) 100%); 
+border: 1px solid var(--verde-borde); 
+border-radius: var(--radio-grande); 
+box-shadow: var(--sombra); 
+} 
+
+/* Cada tipo de panel con su tono */ 
+.vacunas-section, 
+.citas-section, 
+.historial-formulario, 
+.calendario-card { 
+background: linear-gradient(160deg, var(--azul-1) 0%, var(--azul-2) 100%); 
+border-color: var(--azul-borde); 
+} 
+
+.alimentacion-section { 
+background: linear-gradient(160deg, var(--amarillo-1) 0%, var(--amarillo-2) 100%); 
+border-color: var(--amarillo-borde); 
+} 
+
+.desparasitacion-seccion, 
+.desparasitacion-formulario, 
+.mascota-perfil-card { 
+background: linear-gradient(160deg, var(--lila-1) 0%, var(--lila-2) 100%); 
+border-color: var(--lila-borde); 
+} 
+
+.login-card { 
+background: linear-gradient(160deg, var(--verde-1) 0%, var(--azul-2) 100%); 
+} 
+
+.vacunas-section, 
+.citas-section, 
+.alimentacion-section, 
+.desparasitacion-seccion, 
+.desparasitacion-formulario, 
+.historial-formulario { 
+width: 100%; 
+margin-bottom: 30px; 
+padding: 25px; 
+} 
+
+
+/* ========================================================= 
+7. LOGIN Y REGISTRO 
+========================================================= */ 
+
+@keyframes flotar { 
+0%, 100% { transform: translateY(0); } 
+50% { transform: translateY(-22px); } 
+} 
+
+.login-container { 
+position: relative; 
+overflow: hidden; 
+min-height: 100vh; 
+display: flex; 
+justify-content: center; 
+align-items: center; 
+padding: 30px; 
+
+/* Sin fondo propio: se ve el fondo general de la app 
+(malla de color + patrón de huellas + adornos de los costados) */ 
+background-color: transparent; 
+
+/* Solo 5 adornos cerca de la tarjeta */ 
+background-image: 
+var(--deco-ramita), 
+var(--deco-hueso), 
+var(--deco-huella-azul), 
+var(--deco-brillo), 
+var(--deco-rayitas); 
+background-repeat: no-repeat; 
+background-size: 84px, 54px, 58px, 36px, 52px; 
+background-position: 
+left 16% bottom 14%, 
+left 22% top 20%, 
+right 20% bottom 18%, 
+right 24% top 16%, 
+right 14% top 56%; 
+} 
+
+/* Círculos grandes que flotan despacio al fondo */ 
+.login-container::before, 
+.login-container::after { 
+content: ""; 
+position: absolute; 
+border-radius: 50%; 
+pointer-events: none; 
+animation: adornos-respiran 8s ease-in-out infinite alternate; 
+} 
+
+.login-container::before { 
+width: 320px; 
+height: 320px; 
+left: -90px; 
+top: -90px; 
+background: var(--verde-circulo); 
+opacity: 0.35; 
+animation: flotar 9s ease-in-out infinite; 
+} 
+
+.login-container::after { 
+width: 260px; 
+height: 260px; 
+right: -70px; 
+bottom: -70px; 
+background: var(--azul-circulo); 
+opacity: 0.40; 
+animation: flotar 11s ease-in-out infinite reverse; 
+} 
+
+.login-card { 
+position: relative; 
+z-index: 2; 
+overflow: hidden; 
+width: 100%; 
+max-width: 460px; 
+padding: 44px 40px 36px; 
+background: linear-gradient(160deg, #FFFFFF 0%, var(--verde-1) 55%, var(--azul-2) 100%); 
+border: 1px solid var(--verde-borde); 
+border-top: 6px solid var(--verde-acento); 
+border-radius: 28px; 
+box-shadow: 0 20px 50px rgba(47, 107, 90, 0.18); 
+animation: aparecer 0.7s ease backwards; 
+} 
+
+/* Círculos decorativos dentro de la tarjeta */ 
+.login-card::before, 
+.login-card::after { 
+content: ""; 
+position: absolute; 
+border-radius: 50%; 
+pointer-events: none; 
+} 
+
+.login-card::before { 
+width: 150px; 
+height: 150px; 
+right: -55px; 
+top: -60px; 
+background: var(--azul-circulo); 
+opacity: 0.35; 
+} 
+
+.login-card::after { 
+width: 130px; 
+height: 130px; 
+left: -50px; 
+bottom: -55px; 
+background: var(--amarillo-circulo); 
+opacity: 0.45; 
+} 
+
+.login-card > * { 
+position: relative; 
+z-index: 2; 
+} 
+
+.logo { 
+text-align: center; 
+} 
+
+.logo h1 { 
+margin-bottom: 6px; 
+font-size: 2.4rem; 
+letter-spacing: -0.5px; 
+background: linear-gradient(90deg, var(--verde-oscuro), var(--lila-oscuro)); 
+-webkit-background-clip: text; 
+background-clip: text; 
+-webkit-text-fill-color: transparent; 
+color: transparent; 
+} 
+
+.logo p { 
+color: var(--texto-suave); 
+font-size: 0.9375rem; 
+} 
+
+.mascotas { 
+width: fit-content; 
+margin: 20px auto 22px; 
+padding: 10px 26px; 
+text-align: center; 
+font-size: 2.4rem; 
+letter-spacing: 6px; 
+background: rgba(255, 255, 255, 0.75); 
+border: 1px solid var(--verde-borde); 
+border-radius: 999px; 
+box-shadow: var(--sombra); 
+} 
+
+.login-card h2 { 
+text-align: center; 
+font-size: 1.5rem; 
+color: var(--verde-oscuro); 
+margin-bottom: 6px; 
+} 
+
+.login-card > p { 
+text-align: center; 
+color: var(--texto-suave); 
+margin-bottom: 26px; 
+} 
+
+.campo { 
+margin-bottom: 18px; 
+} 
+
+.campo label { 
+display: block; 
+margin-bottom: 7px; 
+font-weight: 700; 
+color: var(--texto); 
+} 
+
+.input-box { 
+display: flex; 
+align-items: center; 
+gap: 12px; 
+min-height: 56px; 
+background: var(--grad-verde); 
+border: 1px solid var(--verde-borde); 
+border-left: 5px solid var(--verde-acento); 
+border-radius: 16px; 
+padding: 0 14px 0 10px; 
+box-shadow: 0 3px 10px rgba(47, 107, 90, 0.08); 
+transition: box-shadow 0.3s ease; 
+} 
+
+.input-box:hover { 
+box-shadow: var(--sombra-hover); 
+} 
+
+.input-box:focus-within { 
+box-shadow: 0 0 0 4px rgba(171, 230, 161, 0.40), 0 8px 18px rgba(47, 107, 90, 0.12); 
+} 
+
+/* El contorno de foco lo muestra el contenedor */ 
+.input-box:has(input:focus-visible) { 
+outline: 3px solid rgba(36, 90, 53, 0.55); 
+outline-offset: 2px; 
+} 
+
+.input-box span { 
+width: 38px; 
+height: 38px; 
+flex-shrink: 0; 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+background: var(--verde-icono); 
+border-radius: 11px; 
+box-shadow: 0 3px 8px rgba(47, 107, 90, 0.10); 
+font-size: 1.125rem; 
+} 
+
+.input-box input { 
+width: 100%; 
+border: none; 
+background: transparent; 
+padding: 14px 4px; 
+font-size: 0.9375rem; 
+color: var(--texto); 
+} 
+
+.input-box input:focus-visible { 
+outline: none; 
+} 
+
+.input-box input::placeholder { 
+color: var(--placeholder); 
+} 
+
+.recordar { 
+display: flex; 
+justify-content: space-between; 
+align-items: center; 
+gap: 10px; 
+margin: 20px 0 24px; 
+font-size: 0.875rem; 
+} 
+
+.recordar label { 
+display: flex; 
+align-items: center; 
+gap: 8px; 
+color: var(--texto-suave); 
+cursor: pointer; 
+} 
+
+.recordar input[type="checkbox"] { 
+width: 18px; 
+height: 18px; 
+accent-color: var(--verde-oscuro); 
+cursor: pointer; 
+} 
+
+.recordar a { 
+color: var(--verde-oscuro); 
+text-decoration: none; 
+font-weight: 700; 
+} 
+
+.recordar a:hover { 
+text-decoration: underline; 
+} 
+
+/* Zona inferior: separador + botón de registro */ 
+.registro { 
+margin-top: 26px; 
+padding-top: 22px; 
+border-top: 1px dashed var(--verde-borde); 
+text-align: center; 
+color: var(--texto-suave); 
+font-size: 0.9rem; 
+} 
+
+
+/* ========================================================= 
+8. DASHBOARD Y BARRA LATERAL 
+========================================================= */ 
+
+.dashboard { 
+min-height: 100vh; 
+display: flex; 
+} 
+
+.sidebar { 
+width: var(--sb); 
+height: 100vh; 
+position: fixed; 
+top: 0; 
+left: 0; 
+display: flex; 
+flex-direction: column; 
+background-color: #FFFDF7; 
+background-image: 
+url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 120 120'%3E%3Cg fill='%23E8C79D' fill-opacity='0.16' transform='rotate(-20 60 60)'%3E%3Cellipse cx='60' cy='70' rx='11' ry='9'/%3E%3Ccircle cx='45' cy='55' r='4.5'/%3E%3Ccircle cx='54' cy='47' r='4.5'/%3E%3Ccircle cx='66' cy='47' r='4.5'/%3E%3Ccircle cx='75' cy='55' r='4.5'/%3E%3C/g%3E%3C/svg%3E"), 
+linear-gradient(180deg, #FFFDF7 0%, #FBF7EE 100%); 
+background-size: 100px 100px, auto; 
+border-right: 2px solid var(--trazo); 
+box-shadow: 6px 0 24px rgba(47, 107, 90, 0.08); 
+z-index: 1000; 
+overflow-y: auto; 
+} 
+
+
+/* ---------- Logo ---------- */ 
+
+.sidebar-logo { 
+position: relative; 
+overflow: hidden; 
+width: 100%; 
+padding: 30px 20px 24px; 
+border-bottom: 2px dashed var(--verde-borde); 
+text-align: center; 
+flex-shrink: 0; 
+} 
+
+.sidebar-logo::before, 
+.sidebar-logo::after { 
+content: ""; 
+position: absolute; 
+border-radius: 50%; 
+pointer-events: none; 
+} 
+
+.sidebar-logo::before { 
+width: 80px; 
+height: 80px; 
+left: -30px; 
+top: -34px; 
+background: var(--azul-circulo); 
+opacity: 0.30; 
+} 
+
+.sidebar-logo::after { 
+width: 100px; 
+height: 100px; 
+right: -34px; 
+bottom: -48px; 
+background: var(--amarillo-circulo); 
+opacity: 0.35; 
+} 
+
+.sidebar-logo h1 { 
+position: relative; 
+z-index: 2; 
+display: inline-flex; 
+align-items: center; 
+gap: 6px; 
+margin: 0; 
+color: #4FAF63; 
+font-size: 1.75rem; 
+font-weight: 700; 
+letter-spacing: -0.3px; 
+} 
+
+/* Huellita oscura junto al nombre, como en el mockup */ 
+.sidebar-logo h1::after { 
+content: ""; 
+width: 1.05em; 
+height: 1.05em; 
+background-color: var(--texto); 
+-webkit-mask: var(--ico-huella-llena) center / contain no-repeat; 
+mask: var(--ico-huella-llena) center / contain no-repeat; 
+} 
+
+
+/* ---------- Menú ---------- */ 
+
+.sidebar nav { 
+width: 100%; 
+display: flex; 
+flex-direction: column; 
+gap: 4px; 
+padding: 18px 14px; 
+} 
+
+.sidebar nav a, 
+.sidebar-footer a { 
+position: relative; 
+width: 100%; 
+display: flex; 
+align-items: center; 
+gap: 14px; 
+padding: 11px 16px; 
+border: 2px solid transparent; 
+border-radius: 14px; 
+text-decoration: none; 
+color: var(--texto); 
+font-size: 0.9375rem; 
+font-weight: 600; 
+transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.3s ease; 
+} 
+
+/* Ícono de línea de cada opción */ 
+.sidebar nav a::before, 
+.sidebar-footer a::before { 
+content: ""; 
+width: 24px; 
+height: 24px; 
+flex-shrink: 0; 
+background-color: var(--trazo); 
+-webkit-mask: var(--ico-huella) center / contain no-repeat; 
+mask: var(--ico-huella) center / contain no-repeat; 
+transition: transform 0.3s ease, background-color 0.3s ease; 
+} 
+
+/* Orden del mockup: Inicio, Mis Mascotas, Salud, Citas, 
+Alimentación, Calendario, Recordatorios, Perfil */ 
+.sidebar nav a:nth-child(1)::before { -webkit-mask-image: var(--ico-casa); mask-image: var(--ico-casa); } 
+.sidebar nav a:nth-child(2)::before { -webkit-mask-image: var(--ico-huella); mask-image: var(--ico-huella); } 
+.sidebar nav a:nth-child(3)::before { -webkit-mask-image: var(--ico-salud); mask-image: var(--ico-salud); } 
+.sidebar nav a:nth-child(4)::before { -webkit-mask-image: var(--ico-estetoscopio); mask-image: var(--ico-estetoscopio); } 
+.sidebar nav a:nth-child(5)::before { -webkit-mask-image: var(--ico-tazon); mask-image: var(--ico-tazon); } 
+.sidebar nav a:nth-child(6)::before { -webkit-mask-image: var(--ico-calendario); mask-image: var(--ico-calendario); } 
+.sidebar nav a:nth-child(7)::before { -webkit-mask-image: var(--ico-campana); mask-image: var(--ico-campana); } 
+.sidebar nav a:nth-child(8)::before { -webkit-mask-image: var(--ico-usuario); mask-image: var(--ico-usuario); } 
+
+/* Si el enlace dice a dónde va, el ícono se ajusta solo */ 
+.sidebar nav a[href*="inicio"]::before, 
+.sidebar nav a[href*="dashboard"]::before, 
+.sidebar nav a[href*="index"]::before { -webkit-mask-image: var(--ico-casa); mask-image: var(--ico-casa); } 
+.sidebar nav a[href*="perfil"]::before { -webkit-mask-image: var(--ico-usuario); mask-image: var(--ico-usuario); } 
+.sidebar nav a[href*="mascota"]::before { -webkit-mask-image: var(--ico-huella); mask-image: var(--ico-huella); } 
+.sidebar nav a[href*="salud"]::before { -webkit-mask-image: var(--ico-salud); mask-image: var(--ico-salud); } 
+.sidebar nav a[href*="cita"]::before { -webkit-mask-image: var(--ico-estetoscopio); mask-image: var(--ico-estetoscopio); } 
+.sidebar nav a[href*="aliment"]::before { -webkit-mask-image: var(--ico-tazon); mask-image: var(--ico-tazon); } 
+.sidebar nav a[href*="calendario"]::before { -webkit-mask-image: var(--ico-calendario); mask-image: var(--ico-calendario); } 
+.sidebar nav a[href*="recordatorio"]::before{ -webkit-mask-image: var(--ico-campana); mask-image: var(--ico-campana); } 
+.sidebar nav a[href*="vacuna"]::before { -webkit-mask-image: var(--ico-jeringa); mask-image: var(--ico-jeringa); } 
+.sidebar nav a[href*="historial"]::before { -webkit-mask-image: var(--ico-portapapeles); mask-image: var(--ico-portapapeles); } 
+.sidebar nav a[href*="desparasit"]::before { -webkit-mask-image: var(--ico-pastilla); mask-image: var(--ico-pastilla); } 
+
+.sidebar-footer a::before { 
+-webkit-mask-image: var(--ico-salida); 
+mask-image: var(--ico-salida); 
+} 
+
+.sidebar nav a:hover { 
+background-color: var(--lila-claro); 
+color: var(--lila-oscuro); 
+transform: translateX(3px); 
+} 
+
+.sidebar nav a:hover::before { 
+background-color: var(--lila-oscuro); 
+transform: scale(1.1); 
+} 
+
+/* Opción activa: pastilla lila, como en el mockup */ 
+.sidebar nav a.menu-activo { 
+background-color: #DCCDEF; 
+border-color: #C9B3E3; 
+color: var(--btn-lila-texto); 
+font-weight: 700; 
+} 
+
+.sidebar nav a.menu-activo::before { 
+background-color: var(--btn-lila-texto); 
+} 
+
+
+/* ---------- Cerrar sesión ---------- */ 
+
+.sidebar-footer { 
+width: 100%; 
+margin-top: auto; 
+padding: 14px 14px 20px; 
+border-top: 2px dashed var(--verde-borde); 
+flex-shrink: 0; 
+} 
+
+.sidebar-footer a:hover { 
+background-color: var(--btn-rosa); 
+border-color: var(--btn-rosa-borde); 
+color: var(--rojo); 
+} 
+
+.sidebar-footer a:hover::before { 
+background-color: var(--rojo); 
+} 
+
+.main-content { 
+width: calc(100% - 255px); 
+min-height: 100vh; 
+margin-left: 255px; 
+padding: 30px; 
+} 
+
+.calendario-page, 
+.mascotas-page, 
+.vacunas-page, 
+.main-content.citas-page, 
+.main-content.alimentacion-page, 
+.main-content.recordatorios-page { 
+width: calc(100% - 255px); 
+} 
+
+/* En pantallas anchas el contenido se centra y deja espacio a los lados */ 
+@media (min-width: 1001px) { 
+
+.main-content { 
+padding-inline: max(30px, calc((100vw - 255px - 1180px) / 2)); 
+} 
+} 
+
+
+/* ========================================================= 
+9. ENCABEZADOS Y BIENVENIDA 
+========================================================= */ 
+
+.top-header, 
+.page-header { 
+padding: 22px 25px; 
+display: flex; 
+justify-content: space-between; 
+align-items: center; 
+gap: 20px; 
+margin-bottom: 25px; 
+} 
+
+.top-header h2, 
+.page-header h1, 
+.page-header h2 { 
+margin-bottom: 5px; 
+color: var(--verde-oscuro); 
+font-size: 1.5rem; 
+} 
+
+.top-header p, 
+.page-header p { 
+color: var(--texto-suave); 
+} 
+
+.page-kicker, 
+.section-kicker { 
+display: block; 
+margin-bottom: 5px; 
+color: var(--verde-oscuro); 
+font-size: 0.75rem; 
+font-weight: 700; 
+letter-spacing: 1px; 
+} 
+
+.welcome-card { 
+--c-grad: linear-gradient(135deg, var(--verde-1) 0%, var(--azul-2) 100%); 
+--c-borde: var(--verde-borde); 
+--c-acento: var(--verde-acento); 
+--c-circulo: var(--azul-circulo); 
+
+padding: 30px; 
+display: flex; 
+justify-content: space-between; 
+align-items: center; 
+margin-bottom: 30px; 
+} 
+
+.welcome-card::after { 
+width: 150px; 
+height: 150px; 
+right: -45px; 
+bottom: -60px; 
+} 
+
+.welcome-card h2 { 
+margin-bottom: 10px; 
+color: var(--verde-oscuro); 
+font-size: 1.5625rem; 
+} 
+
+.welcome-card p { 
+color: var(--texto-suave); 
+max-width: 650px; 
+line-height: 1.6; 
+} 
+
+.welcome-animals { 
+font-size: 4rem; 
+white-space: nowrap; 
+} 
+
+
+/* ========================================================= 
+10. TÍTULOS DE SECCIÓN 
+========================================================= */ 
+
+.dashboard-section h2, 
+.summary-section h2 { 
+margin-bottom: 20px; 
+font-size: 1.375rem; 
+} 
+
+.section-title { 
+width: 100%; 
+margin-bottom: 25px; 
+} 
+
+.section-title h2 { 
+margin: 0 0 6px 0; 
+color: var(--verde-oscuro); 
+font-size: 1.375rem; 
+} 
+
+.section-title p { 
+margin: 0; 
+color: var(--texto-suave); 
+font-size: 0.9375rem; 
+} 
+
+
+/* ========================================================= 
+11. RESUMEN DEL DASHBOARD 
+========================================================= */ 
+
+.summary-section { 
+margin-top: 35px; 
+} 
+
+.summary-cards { 
+display: grid; 
+grid-template-columns: repeat(3, 1fr); 
+gap: 20px; 
+} 
+
+.summary-card { 
+padding: 21px; 
+display: flex; 
+align-items: center; 
+gap: 15px; 
+cursor: default; 
+} 
+
+.summary-card > span { 
+font-size: 2.2rem; 
+} 
+
+.summary-card strong { 
+display: block; 
+margin-bottom: 5px; 
+font-size: 1.5rem; 
+color: var(--c-titulo); 
+} 
+
+.summary-card p { 
+color: var(--texto-suave); 
+font-size: 0.875rem; 
+} 
+
+.summary-cards a.summary-card { 
+text-decoration: none; 
+color: inherit; 
+cursor: pointer; 
+} 
+
+
+/* ========================================================= 
+12. BOTONES 
+Todos comparten el mismo tamaño base: alto mínimo 48 px, 
+mismo relleno, misma letra y mismo borde (2 px). 
+Solo cambia el color de cada tipo. 
+========================================================= */ 
+
+.btn-agregar, 
+.btn-principal, 
+.btn-guardar, 
+.btn, 
+.btn-login, 
+.btn-registrar, 
+.registro a, 
+.btn-secundario, 
+.btn-cancelar, 
+.btn-perfil, 
+.desparasitacion-formulario button, 
+.historial-formulario button { 
+display: inline-flex; 
+align-items: center; 
+justify-content: center; 
+gap: 8px; 
+min-height: 48px; 
+padding: 12px 24px; 
+border: 2px solid transparent; 
+border-radius: 14px; 
+font-family: inherit; 
+font-size: 1rem; 
+font-weight: 700; 
+line-height: 1.2; 
+text-align: center; 
+text-decoration: none; 
+cursor: pointer; 
+transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; 
+} 
+
+/* Botones de acción con el mismo ancho mínimo en los grupos */ 
+.form-buttons > *, 
+.perfil-botones > *, 
+.perfil-usuario-botones > * { 
+min-width: 150px; 
+} 
+
+/* Botones que ocupan todo el ancho */ 
+.btn-principal, 
+.btn-login, 
+.registro a { 
+width: 100%; 
+} 
+
+.btn-principal { 
+margin-top: 8px; 
+} 
+
+.btn-perfil { 
+margin-top: 12px; 
+} 
+
+/* ---------- Principal (verde pastel) ---------- */ 
+
+.btn-agregar, 
+.btn-principal, 
+.btn-guardar, 
+.btn, 
+.btn-login, 
+.desparasitacion-formulario button, 
+.historial-formulario button { 
+background-color: var(--btn-verde); 
+border-color: var(--btn-verde); 
+color: var(--btn-verde-texto); 
+} 
+
+.btn-login { 
+box-shadow: 0 8px 18px rgba(117, 194, 130, 0.45); 
+} 
+
+.btn-login::after { 
+content: "\2192"; 
+font-size: 1.2rem; 
+transition: transform 0.3s ease; 
+} 
+
+.btn-login:hover::after { 
+transform: translateX(4px); 
+} 
+
+.btn-agregar:hover, 
+.btn-principal:hover, 
+.btn-guardar:hover, 
+.btn:hover, 
+.btn-login:hover, 
+.desparasitacion-formulario button:hover, 
+.historial-formulario button:hover { 
+background-color: var(--btn-verde-hover); 
+border-color: var(--btn-verde-hover); 
+transform: translateY(-3px); 
+box-shadow: var(--sombra-hover); 
+} 
+
+.desparasitacion-formulario button:active, 
+.historial-formulario button:active { 
+transform: translateY(0); 
+} 
+
+/* ---------- Registrar (lila pastel) ---------- */ 
+
+.btn-registrar, 
+.registro a { 
+background-color: var(--btn-lila); 
+border-color: var(--btn-lila); 
+color: var(--btn-lila-texto); 
+box-shadow: 0 8px 18px rgba(182, 146, 203, 0.40); 
+} 
+
+.registro a { 
+margin-top: 12px; 
+} 
+
+.btn-registrar:hover, 
+.registro a:hover { 
+background-color: var(--btn-lila-hover); 
+border-color: var(--btn-lila-hover); 
+text-decoration: none; 
+transform: translateY(-3px); 
+box-shadow: 0 10px 24px rgba(182, 146, 203, 0.50); 
+} 
+
+/* ---------- Secundario (verde suave) ---------- */ 
+
+.btn-secundario { 
+background: var(--grad-verde); 
+border-color: var(--verde-borde); 
+color: var(--verde-oscuro); 
+box-shadow: inset 5px 0 0 var(--verde-acento); 
+} 
+
+.btn-secundario:hover { 
+transform: translateY(-3px); 
+box-shadow: inset 5px 0 0 var(--verde-acento), var(--sombra-hover); 
+} 
+
+/* ---------- Cancelar (rosa coral) ---------- */ 
+
+.btn-cancelar { 
+background-color: var(--btn-rosa); 
+border-color: var(--btn-rosa-borde); 
+color: var(--rojo); 
+} 
+
+.btn-cancelar:hover { 
+background-color: var(--btn-rosa-hover); 
+border-color: var(--btn-rosa-borde); 
+transform: translateY(-3px); 
+box-shadow: var(--sombra-hover); 
+} 
+
+/* ---------- Ver perfil (toma el color de la tarjeta) ---------- */ 
+
+.btn-perfil { 
+background-color: var(--c-circulo); 
+border-color: var(--c-circulo); 
+color: var(--c-titulo); 
+} 
+
+.btn-perfil:hover { 
+background-color: var(--c-acento); 
+border-color: var(--c-acento); 
+color: var(--texto); 
+transform: translateY(-2px); 
+} 
+
+/* ---------- Recordatorios: botones del formulario más compactos ---------- */ 
+
+.recordatorios-page .form-card :is(button, .btn-principal, .btn-guardar, .btn-agregar, .btn-cancelar) { 
+width: auto; 
+min-width: 140px; 
+min-height: 44px; 
+margin-top: 0; 
+padding: 10px 22px; 
+font-size: 0.9375rem; 
+} 
+
+.recordatorios-page .form-card .mascota-form > :is(button, .btn-principal, .btn-guardar) { 
+grid-column: 1 / -1; 
+justify-self: end; 
+} 
+
+@media (max-width: 700px) { 
+
+.recordatorios-page .form-card .mascota-form > :is(button, .btn-principal, .btn-guardar) { 
+justify-self: stretch; 
+} 
+} 
+
+
+/* ========================================================= 
+13. MASCOTAS 
+========================================================= */ 
+
+.mascotas-section { 
+margin-bottom: 30px; 
+} 
+
+.mascotas-section > h2 { 
+margin-bottom: 18px; 
+font-size: 1.375rem; 
+} 
+
+.mascotas-grid { 
+display: grid; 
+grid-template-columns: repeat(3, 1fr); 
+gap: 20px; 
+} 
+
+.mascota-card { 
+padding: 22px; 
+text-align: center; 
+} 
+
+.mascota-foto, 
+.mascota-perfil-foto { 
+margin: 0 auto 15px; 
+border-radius: 50%; 
+background: var(--c-icono, var(--lila-claro)); 
+display: flex; 
+justify-content: center; 
+align-items: center; 
+box-shadow: 0 4px 10px rgba(47, 107, 90, 0.10); 
+} 
+
+.mascota-foto { 
+width: 105px; 
+height: 105px; 
+font-size: 3.6rem; 
+border: 3px solid var(--c-acento); 
+} 
+
+.mascota-info h3 { 
+margin-bottom: 7px; 
+font-size: 1.25rem; 
+color: var(--c-titulo); 
+} 
+
+.mascota-info p { 
+color: var(--texto-suave); 
+margin-bottom: 7px; 
+font-size: 0.875rem; 
+} 
+
+.mascota-info strong { 
+color: var(--texto); 
+} 
+
+/* Sin !important: la especificidad mayor basta */ 
+.mascota-info .mascota-especie { 
+color: var(--c-titulo); 
+font-weight: 700; 
+margin-bottom: 12px; 
+} 
+
+.agregar-mascota-card { 
+background: var(--grad-amarillo); 
+border: 2px dashed var(--amarillo-acento); 
+padding: 25px; 
+border-radius: var(--radio-grande); 
+text-decoration: none; 
+text-align: center; 
+color: var(--texto); 
+transition: transform 0.3s ease, box-shadow 0.3s ease; 
+} 
+
+.agregar-mascota-card:hover { 
+transform: translateY(-5px); 
+box-shadow: var(--sombra-hover); 
+} 
+
+.plus-icon { 
+width: 65px; 
+height: 65px; 
+margin: 0 auto 12px; 
+border-radius: 17px; 
+background-color: var(--amarillo); 
+display: flex; 
+justify-content: center; 
+align-items: center; 
+font-size: 2.4rem; 
+color: var(--verde-oscuro); 
+box-shadow: 0 4px 10px rgba(47, 107, 90, 0.10); 
+} 
+
+.agregar-mascota-card h3 { 
+margin-bottom: 5px; 
+color: var(--amarillo-titulo); 
+} 
+
+.agregar-mascota-card p { 
+color: var(--texto-suave); 
+font-size: 0.875rem; 
+} 
+
+.sin-mascotas, 
+.sin-vacunas, 
+.sin-citas, 
+.sin-alimentacion, 
+.empty-state, 
+.desparasitacion-vacio, 
+.historial-vacio { 
+grid-column: 1 / -1; 
+width: 100%; 
+padding: 45px 20px; 
+text-align: center; 
+color: var(--texto-suave); 
+background: var(--grad-verde); 
+border: 2px dashed var(--verde-acento); 
+border-radius: var(--radio-grande); 
+} 
+
+.sin-vacunas, 
+.sin-alimentacion { 
+background: var(--grad-amarillo); 
+border-color: var(--amarillo-acento); 
+} 
+
+.sin-mascotas > div, 
+.sin-vacunas-icon, 
+.sin-citas-icon, 
+.sin-alimentacion-icon, 
+.empty-icon { 
+font-size: 3rem; 
+margin-bottom: 10px; 
+} 
+
+.sin-mascotas h3, 
+.sin-vacunas h3, 
+.sin-citas h3, 
+.sin-alimentacion h3, 
+.empty-state h3, 
+.desparasitacion-vacio h3, 
+.historial-vacio h3 { 
+margin-bottom: 8px; 
+color: var(--texto); 
+font-size: 1.25rem; 
+} 
+
+.sin-citas p, 
+.empty-state p { 
+margin: 0; 
+} 
+
+
+/* ========================================================= 
+14. PERFIL DE MASCOTA 
+========================================================= */ 
+
+.mascota-perfil { 
+display: flex; 
+justify-content: center; 
+} 
+
+.mascota-perfil-card { 
+width: 100%; 
+max-width: 800px; 
+padding: 35px; 
+text-align: center; 
+overflow: hidden; 
+border-top: 5px solid var(--lila-acento); 
+} 
+
+.mascota-perfil-foto { 
+width: 130px; 
+height: 130px; 
+margin: 0 auto 18px; 
+background-color: var(--lila-claro); 
+border: 4px solid var(--lila); 
+font-size: 4.7rem; 
+} 
+
+.mascota-perfil-card h1 { 
+font-size: 1.875rem; 
+color: var(--verde-oscuro); 
+margin-bottom: 5px; 
+} 
+
+.perfil-especie { 
+color: var(--lila-oscuro); 
+font-weight: 700; 
+margin-bottom: 28px; 
+} 
+
+.perfil-datos { 
+width: 100%; 
+display: grid; 
+grid-template-columns: repeat(2, 1fr); 
+gap: 15px; 
+text-align: left; 
+margin-bottom: 25px; 
+} 
+
+.dato { 
+padding: 17px; 
+display: flex; 
+align-items: center; 
+gap: 12px; 
+border-radius: var(--radio); 
+} 
+
+.dato > span { 
+font-size: 1.7rem; 
+min-width: 35px; 
+text-align: center; 
+} 
+
+.dato strong { 
+display: block; 
+margin-bottom: 3px; 
+color: var(--texto); 
+} 
+
+.dato p { 
+color: var(--texto-suave); 
+font-size: 0.875rem; 
+} 
+
+.perfil-botones { 
+display: flex; 
+justify-content: center; 
+gap: 12px; 
+} 
+
+
+/* ========================================================= 
+15. SALUD DE LA MASCOTA 
+========================================================= */ 
+
+.salud-mascota { 
+width: 100%; 
+margin-top: 35px; 
+padding-top: 25px; 
+border-top: 2px solid var(--verde-claro); 
+text-align: left; 
+} 
+
+.salud-mascota h2 { 
+margin: 0 0 6px 0; 
+color: var(--verde-oscuro); 
+font-size: 1.375rem; 
+} 
+
+.salud-mascota > p { 
+margin: 0 0 20px 0; 
+color: var(--texto-suave); 
+font-size: 0.875rem; 
+} 
+
+.salud-opciones { 
+width: 100%; 
+display: grid; 
+grid-template-columns: repeat(3, minmax(0, 1fr)); 
+gap: 18px; 
+align-items: stretch; 
+} 
+
+.salud-card { 
+width: 100%; 
+min-width: 0; 
+min-height: 190px; 
+padding: 22px 18px; 
+text-decoration: none; 
+display: flex; 
+flex-direction: column; 
+align-items: center; 
+justify-content: flex-start; 
+text-align: center; 
+color: var(--texto); 
+} 
+
+.salud-card h3 { 
+width: 100%; 
+margin: 0 0 7px 0; 
+color: var(--c-titulo); 
+font-size: 1.0625rem; 
+line-height: 1.3; 
+} 
+
+.salud-card p { 
+width: 100%; 
+margin: 0; 
+color: var(--texto-suave); 
+font-size: 0.8125rem; 
+line-height: 1.5; 
+} 
+
+
+/* ========================================================= 
+16. VACUNAS, CITAS, ALIMENTACIÓN, RECORDATORIOS 
+========================================================= */ 
+
+.vacunas-grid, 
+.citas-grid, 
+.alimentacion-grid, 
+.recordatorios-grid { 
+width: 100%; 
+display: grid; 
+grid-template-columns: repeat(2, minmax(0, 1fr)); 
+gap: 20px; 
+} 
+
+.citas-grid, 
+.alimentacion-grid { 
+margin-top: 0; 
+} 
+
+.vacunas-section > h2 { 
+margin-bottom: 20px; 
+font-size: 1.375rem; 
+color: var(--verde-oscuro); 
+} 
+
+.vacuna-card, 
+.cita-card, 
+.alimentacion-card, 
+.recordatorio-card { 
+width: 100%; 
+min-width: 0; 
+padding: 21px; 
+display: flex; 
+align-items: flex-start; 
+gap: 17px; 
+} 
+
+.vacuna-info, 
+.cita-info, 
+.alimentacion-info, 
+.recordatorio-content { 
+flex: 1; 
+min-width: 0; 
+} 
+
+.vacuna-info h3, 
+.cita-info h3, 
+.alimentacion-info h3, 
+.recordatorio-content h3 { 
+margin: 0 0 10px 0; 
+font-size: 1.125rem; 
+color: var(--c-titulo); 
+} 
+
+.vacuna-info p, 
+.cita-info p, 
+.alimentacion-info p, 
+.recordatorio-content p { 
+margin: 6px 0; 
+color: var(--texto-suave); 
+font-size: 0.875rem; 
+} 
+
+.vacuna-info strong, 
+.cita-info strong, 
+.alimentacion-info strong, 
+.recordatorio-content strong { 
+color: var(--texto); 
+} 
+
+/* Sin !important: mayor especificidad que ".vacuna-info p" */ 
+.vacuna-info .vacuna-mascota, 
+.recordatorio-content .recordatorio-mascota { 
+color: var(--verde-oscuro); 
+font-weight: 700; 
+} 
+
+.cita-estado, 
+.recordatorio-estado { 
+display: inline-block; 
+margin-top: 10px; 
+padding: 6px 13px; 
+border-radius: 20px; 
+font-size: 0.8125rem; 
+font-weight: 700; 
+} 
+
+.cita-estado, 
+.recordatorio-estado.pendiente { 
+background-color: var(--amarillo); 
+border: 1px solid #E4CF72; 
+color: var(--texto); 
+} 
+
+.recordatorio-estado.completado { 
+background-color: var(--verde); 
+border: 1px solid #80C879; 
+color: var(--verde-oscuro); 
+} 
+
+.recordatorios-page .agregar-section { 
+width: 100%; 
+margin: 30px 0; 
+} 
+
+.recordatorios-page .form-card { 
+width: 100%; 
+max-width: 900px; 
+margin: 0 auto; 
+padding: 30px; 
+border-top: 5px solid var(--lila-acento); 
+} 
+
+.recordatorios-section { 
+width: 100%; 
+margin-bottom: 30px; 
+} 
+
+.recordatorio-info { 
+display: flex; 
+flex-wrap: wrap; 
+gap: 10px; 
+margin: 12px 0 10px; 
+} 
+
+.recordatorio-info span { 
+display: inline-block; 
+padding: 6px 10px; 
+background-color: var(--c-icono); 
+border: 1px solid var(--c-borde); 
+border-radius: 20px; 
+color: var(--texto); 
+font-size: 0.8125rem; 
+font-weight: 600; 
+} 
+
+.volver-container, 
+.desparasitacion-volver, 
+.historial-volver { 
+width: 100%; 
+margin-top: 25px; 
+text-align: center; 
+} 
+
+
+/* ========================================================= 
+17. FORMULARIOS 
+.form-group y .form-grupo comparten ahora UNA sola regla 
+(con :is), así no hay código duplicado. 
+Aun así, conviene usar solo una de las dos en el HTML. 
+========================================================= */ 
+
+/* ---------- Tarjeta del formulario ---------- */ 
+
+.form-card, 
+.desparasitacion-formulario, 
+.historial-formulario { 
+position: relative; 
+overflow: hidden; 
+} 
+
+.form-card::after, 
+.desparasitacion-formulario::after, 
+.historial-formulario::after { 
+content: ""; 
+position: absolute; 
+width: 170px; 
+height: 170px; 
+right: -55px; 
+top: -70px; 
+border-radius: 50%; 
+background: var(--verde-circulo); 
+opacity: 0.25; 
+pointer-events: none; 
+} 
+
+.recordatorios-page .form-card::after { 
+background: var(--lila-circulo); 
+} 
+
+.form-card > *, 
+.desparasitacion-formulario > *, 
+.historial-formulario > * { 
+position: relative; 
+z-index: 2; 
+} 
+
+.mascota-form { 
+width: 100%; 
+display: grid; 
+grid-template-columns: repeat(2, minmax(0, 1fr)); 
+gap: 24px 20px; 
+} 
+
+
+/* ---------- Colores de cada campo (rotan: verde, azul, lila, amarillo, rosa) ---------- */ 
+
+:is(.form-group, .form-grupo) { 
+--f-c1: var(--verde-1); 
+--f-c2: var(--verde-2); 
+--f-borde: var(--verde-borde); 
+--f-acento: var(--verde-acento); 
+--f-halo: var(--verde-halo); 
+--f-titulo: var(--verde-titulo); 
+
+width: 100%; 
+margin-bottom: 5px; 
+} 
+
+:is(.form-group, .form-grupo):nth-child(5n+2) { 
+--f-c1: var(--azul-1); 
+--f-c2: var(--azul-2); 
+--f-borde: var(--azul-borde); 
+--f-acento: var(--azul-acento); 
+--f-halo: var(--azul-halo); 
+--f-titulo: var(--azul-titulo); 
+} 
+
+:is(.form-group, .form-grupo):nth-child(5n+3) { 
+--f-c1: var(--lila-1); 
+--f-c2: var(--lila-2); 
+--f-borde: var(--lila-borde); 
+--f-acento: var(--lila-acento); 
+--f-halo: var(--lila-halo); 
+--f-titulo: var(--lila-titulo); 
+} 
+
+:is(.form-group, .form-grupo):nth-child(5n+4) { 
+--f-c1: var(--amarillo-1); 
+--f-c2: var(--amarillo-2); 
+--f-borde: var(--amarillo-borde); 
+--f-acento: var(--amarillo-acento); 
+--f-halo: var(--amarillo-halo); 
+--f-titulo: var(--amarillo-titulo); 
+} 
+
+:is(.form-group, .form-grupo):nth-child(5n+5) { 
+--f-c1: var(--rosa-1); 
+--f-c2: var(--rosa-2); 
+--f-borde: var(--rosa-borde); 
+--f-acento: var(--rosa-acento); 
+--f-halo: var(--rosa-halo); 
+--f-titulo: var(--rosa-titulo); 
+} 
+
+
+/* ---------- Etiquetas ---------- */ 
+
+:is(.form-group, .form-grupo) label { 
+display: flex; 
+align-items: center; 
+gap: 8px; 
+margin-bottom: 9px; 
+padding-left: 4px; 
+font-weight: 700; 
+color: var(--f-titulo); 
+font-size: 0.875rem; 
+} 
+
+:is(.form-group, .form-grupo) label::before { 
+content: ""; 
+width: 9px; 
+height: 9px; 
+flex-shrink: 0; 
+border-radius: 50%; 
+background: var(--f-acento); 
+box-shadow: 0 0 0 3px var(--f-halo); 
+} 
+
+
+/* ---------- Campos ---------- */ 
+
+:is(.form-group, .form-grupo) :is(input, select, textarea) { 
+--f-bg: linear-gradient(135deg, var(--f-c1) 0%, var(--f-c2) 100%); 
+
+width: 100%; 
+padding: 14px 16px 14px 14px; 
+background-color: var(--f-c1); 
+background-image: var(--f-bg); 
+border: 1px solid var(--f-borde); 
+border-left: 5px solid var(--f-acento); 
+border-radius: 16px; 
+font-size: 0.9375rem; 
+color: var(--texto); 
+box-shadow: 0 3px 10px rgba(47, 107, 90, 0.08); 
+transition: box-shadow 0.3s ease; 
+} 
+
+:is(.form-group, .form-grupo) :is(input, textarea)::placeholder { 
+color: var(--placeholder); 
+} 
+
+/* Los campos ya no "saltan" al pasar el cursor: solo cambian la sombra */ 
+:is(.form-group, .form-grupo) :is(input, select, textarea):hover { 
+box-shadow: var(--sombra-hover); 
+} 
+
+:is(.form-group, .form-grupo) :is(input, select, textarea):focus { 
+--f-bg: linear-gradient(135deg, var(--f-c1) 0%, var(--f-c1) 100%); 
+
+box-shadow: 0 0 0 4px var(--f-halo), 0 8px 18px rgba(47, 107, 90, 0.12); 
+} 
+
+/* Lista desplegable con flecha propia */ 
+:is(.form-group, .form-grupo) select { 
+appearance: none; 
+-webkit-appearance: none; 
+padding-right: 48px; 
+cursor: pointer; 
+background-image: 
+url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9' fill='none'%3E%3Cpath d='M1 1.5l6 6 6-6' stroke='%23245A35' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"), 
+var(--f-bg); 
+background-repeat: no-repeat, no-repeat; 
+background-position: right 18px center, 0 0; 
+background-size: 14px 9px, auto; 
+} 
+
+/* Fecha y hora */ 
+:is(.form-group, .form-grupo) input:is([type="date"], [type="time"], [type="datetime-local"]) { 
+cursor: pointer; 
+} 
+
+:is(.form-group, .form-grupo) input::-webkit-calendar-picker-indicator { 
+cursor: pointer; 
+opacity: 0.65; 
+transition: opacity 0.2s ease; 
+} 
+
+:is(.form-group, .form-grupo) input::-webkit-calendar-picker-indicator:hover { 
+opacity: 1; 
+} 
+
+/* Subir archivo (foto) */ 
+:is(.form-group, .form-grupo) input[type="file"] { 
+padding: 10px 12px 10px 10px; 
+cursor: pointer; 
+} 
+
+:is(.form-group, .form-grupo) input[type="file"]::file-selector-button { 
+margin-right: 14px; 
+padding: 8px 16px; 
+background: var(--f-titulo); 
+border: none; 
+border-radius: 12px; 
+color: #FFFFFF; 
+font-family: inherit; 
+font-weight: 700; 
+cursor: pointer; 
+transition: opacity 0.3s ease; 
+} 
+
+:is(.form-group, .form-grupo) input[type="file"]::file-selector-button:hover { 
+opacity: 0.85; 
+} 
+
+/* Casillas y opciones */ 
+:is(.form-group, .form-grupo) input:is([type="checkbox"], [type="radio"]) { 
+width: 20px; 
+height: 20px; 
+padding: 0; 
+background: none; 
+border: revert; 
+border-radius: revert; 
+box-shadow: none; 
+accent-color: var(--verde-oscuro); 
+cursor: pointer; 
+} 
+
+/* Texto largo */ 
+:is(.form-group, .form-grupo) textarea { 
+resize: vertical; 
+min-height: 120px; 
+line-height: 1.6; 
+} 
+
+.form-group:has(textarea) { 
+grid-column: 1 / -1; 
+} 
+
+.desparasitacion-formulario .form-grupo, 
+.historial-formulario .form-grupo { 
+margin-bottom: 22px; 
+} 
+
+.form-row { 
+width: 100%; 
+grid-column: 1 / -1; 
+display: grid; 
+grid-template-columns: repeat(2, minmax(0, 1fr)); 
+gap: 20px; 
+} 
+
+.form-buttons { 
+grid-column: 1 / -1; 
+display: flex; 
+justify-content: flex-end; 
+gap: 12px; 
+margin-top: 12px; 
+padding-top: 20px; 
+border-top: 1px dashed var(--verde-borde); 
+} 
+
+.form-header { 
+margin-bottom: 26px; 
+padding-bottom: 18px; 
+border-bottom: 1px solid var(--verde-borde); 
+} 
+
+.form-header h2 { 
+color: var(--verde-oscuro); 
+margin-bottom: 5px; 
+font-size: 1.375rem; 
+} 
+
+.form-header p { 
+color: var(--texto-suave); 
+font-size: 0.875rem; 
+} 
+
+/* En celular, 16px evita el zoom automático al tocar un campo */ 
+@media (max-width: 700px) { 
+
+:is(.form-group, .form-grupo) :is(input, select, textarea), 
+.input-box input { 
+font-size: 1rem; 
+} 
+} 
+
+
+/* ========================================================= 
+18. DESPARASITACIÓN E HISTORIAL 
+========================================================= */ 
+
+.desparasitacion-lista, 
+.historial-lista { 
+width: 100%; 
+display: grid; 
+grid-template-columns: repeat(2, minmax(0, 1fr)); 
+gap: 20px; 
+} 
+
+.historial-registros { 
+width: 100%; 
+margin-bottom: 30px; 
+} 
+
+.desparasitacion-card, 
+.historial-card { 
+width: 100%; 
+padding: 21px; 
+} 
+
+.desparasitacion-card h3, 
+.historial-card h3 { 
+margin: 0 0 12px 0; 
+color: var(--c-titulo); 
+font-size: 1.125rem; 
+} 
+
+.desparasitacion-card p, 
+.historial-card p { 
+margin: 7px 0; 
+color: var(--texto-suave); 
+font-size: 0.875rem; 
+line-height: 1.6; 
+} 
+
+.desparasitacion-card strong, 
+.historial-card strong { 
+color: var(--texto); 
+} 
+
+.historial-card-encabezado { 
+display: flex; 
+align-items: center; 
+gap: 14px; 
+margin-bottom: 15px; 
+} 
+
+.historial-card-encabezado h3 { 
+margin: 0; 
+} 
+
+.historial-fecha { 
+color: var(--verde-oscuro); 
+font-size: 0.8125rem; 
+font-weight: 700; 
+} 
+
+
+/* ========================================================= 
+19. PERFIL DE USUARIO 
+========================================================= */ 
+
+.perfil-usuario { 
+width: 100%; 
+display: flex; 
+justify-content: center; 
+align-items: flex-start; 
+padding: 20px 0 40px; 
+} 
+
+.perfil-usuario-card { 
+width: 100%; 
+max-width: 850px; 
+padding: 35px; 
+text-align: center; 
+border-top: 5px solid var(--verde-acento); 
+} 
+
+.perfil-avatar { 
+width: 95px; 
+height: 95px; 
+margin: 0 auto 18px; 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+border-radius: 50%; 
+background: var(--lila-claro); 
+border: 3px solid var(--lila); 
+font-size: 2.8rem; 
+box-shadow: 0 5px 15px rgba(46, 58, 52, 0.08); 
+} 
+
+.perfil-usuario-card h1 { 
+margin: 0; 
+color: var(--texto); 
+font-size: 1.875rem; 
+font-weight: 700; 
+} 
+
+.perfil-usuario-subtitulo { 
+margin: 8px 0 30px; 
+color: var(--texto-suave); 
+font-size: 1rem; 
+} 
+
+.perfil-usuario-datos { 
+width: 100%; 
+display: grid; 
+grid-template-columns: repeat(2, 1fr); 
+gap: 18px; 
+margin-top: 20px; 
+text-align: left; 
+} 
+
+.perfil-usuario-dato { 
+min-height: 85px; 
+display: flex; 
+align-items: center; 
+gap: 15px; 
+padding: 18px; 
+border-radius: var(--radio-grande); 
+} 
+
+.perfil-usuario-dato span { 
+display: block; 
+margin-bottom: 5px; 
+color: var(--texto-suave); 
+font-size: 0.8125rem; 
+} 
+
+.perfil-usuario-dato .perfil-usuario-icono { 
+margin-bottom: 0; 
+} 
+
+.perfil-usuario-dato strong { 
+display: block; 
+color: var(--texto); 
+font-size: 1rem; 
+word-break: break-word; 
+} 
+
+.perfil-usuario-botones { 
+display: flex; 
+justify-content: center; 
+align-items: center; 
+gap: 15px; 
+margin-top: 30px; 
+} 
+
+.perfil-usuario-botones .btn-agregar, 
+.perfil-usuario-botones .btn-cancelar { 
+display: inline-flex; 
+align-items: center; 
+justify-content: center; 
+} 
+
+.perfil-form { 
+width: 100%; 
+max-width: 650px; 
+margin: 0 auto; 
+text-align: left; 
+} 
+
+.perfil-form .form-group { 
+margin-bottom: 20px; 
+} 
+
+.perfil-mensaje { 
+width: 100%; 
+max-width: 850px; 
+margin: 0 auto 20px; 
+padding: 14px 18px; 
+border-radius: 14px; 
+text-align: center; 
+font-weight: 600; 
+} 
+
+.perfil-mensaje.exito { 
+background: var(--grad-verde); 
+border: 1px solid var(--verde-borde); 
+border-left: 5px solid var(--verde-acento); 
+color: var(--verde-oscuro); 
+} 
+
+.perfil-mensaje.error { 
+background: var(--grad-rosa); 
+border: 1px solid var(--rosa-borde); 
+border-left: 5px solid var(--rosa-acento); 
+color: var(--rojo); 
+} 
+
+
+/* ========================================================= 
+20. PRÓXIMAS ACTIVIDADES 
+========================================================= */ 
+
+.proximas-actividades { 
+width: 100%; 
+margin-top: 30px; 
+} 
+
+.proximas-actividades .section-title h2 { 
+margin: 0 0 5px 0; 
+color: var(--texto); 
+font-size: 1.375rem; 
+} 
+
+.proximas-actividades .section-title p { 
+font-size: 0.875rem; 
+} 
+
+.actividades-grid { 
+width: 100%; 
+display: grid; 
+grid-template-columns: repeat(2, minmax(0, 1fr)); 
+gap: 20px; 
+} 
+
+.actividad-card { 
+width: 100%; 
+padding: 22px; 
+} 
+
+.actividad-card-header { 
+width: 100%; 
+display: flex; 
+align-items: center; 
+justify-content: space-between; 
+gap: 15px; 
+padding-bottom: 15px; 
+margin-bottom: 12px; 
+border-bottom: 1px solid var(--c-borde); 
+} 
+
+.actividad-card-header > div { 
+display: flex; 
+align-items: center; 
+gap: 12px; 
+} 
+
+.actividad-card-header h3 { 
+margin: 0; 
+color: var(--c-titulo); 
+font-size: 1.125rem; 
+} 
+
+.actividad-link { 
+color: var(--verde-oscuro); 
+text-decoration: none; 
+font-size: 0.8125rem; 
+font-weight: 700; 
+white-space: nowrap; 
+transition: color 0.2s ease, transform 0.2s ease; 
+} 
+
+.actividad-link:hover { 
+color: var(--trazo); 
+transform: translateX(2px); 
+} 
+
+.actividad-lista { 
+width: 100%; 
+display: flex; 
+flex-direction: column; 
+gap: 12px; 
+} 
+
+.actividad-item { 
+width: 100%; 
+display: grid; 
+grid-template-columns: 85px minmax(0, 1fr) auto; 
+align-items: center; 
+gap: 15px; 
+padding: 14px; 
+background-color: var(--c-icono); 
+border: 1px solid var(--c-borde); 
+border-radius: var(--radio); 
+transition: background-color 0.2s ease, transform 0.2s ease; 
+} 
+
+.actividad-item:hover { 
+background-color: var(--c-borde); 
+transform: translateX(3px); 
+} 
+
+.actividad-fecha { 
+display: flex; 
+flex-direction: column; 
+gap: 4px; 
+padding-right: 10px; 
+border-right: 1px solid var(--c-borde); 
+} 
+
+.actividad-fecha strong { 
+color: var(--verde-oscuro); 
+font-size: 0.8125rem; 
+} 
+
+.actividad-fecha span { 
+color: var(--texto-suave); 
+font-size: 0.8125rem; 
+} 
+
+.actividad-info { 
+min-width: 0; 
+display: flex; 
+flex-direction: column; 
+gap: 4px; 
+} 
+
+.actividad-info h4 { 
+margin: 0; 
+color: var(--texto); 
+font-size: 0.875rem; 
+overflow: hidden; 
+text-overflow: ellipsis; 
+white-space: nowrap; 
+} 
+
+.actividad-info p { 
+margin: 0; 
+color: var(--texto-suave); 
+font-size: 0.8125rem; 
+} 
+
+.actividad-info > span { 
+color: var(--texto-suave); 
+font-size: 0.75rem; 
+overflow: hidden; 
+text-overflow: ellipsis; 
+white-space: nowrap; 
+} 
+
+.actividad-estado, 
+.calendario-actividad .actividad-estado { 
+display: inline-flex; 
+align-items: center; 
+justify-content: center; 
+padding: 5px 10px; 
+background-color: var(--azul-claro); 
+color: var(--verde-oscuro); 
+border-radius: 20px; 
+font-size: 0.75rem; 
+font-weight: 700; 
+white-space: nowrap; 
+} 
+
+.actividad-estado.pendiente, 
+.calendario-actividad .actividad-estado.pendiente { 
+background-color: var(--amarillo-claro); 
+color: #6B5800; 
+} 
+
+.actividad-vacia { 
+width: 100%; 
+display: flex; 
+flex-direction: column; 
+align-items: center; 
+justify-content: center; 
+gap: 8px; 
+padding: 30px 20px; 
+text-align: center; 
+} 
+
+.actividad-vacia span { 
+font-size: 1.9rem; 
+} 
+
+.actividad-vacia p { 
+margin: 0; 
+color: var(--texto-suave); 
+font-size: 0.8125rem; 
+} 
+
+
+/* ========================================================= 
+21. CALENDARIO 
+========================================================= */ 
+
+.calendario-section { 
+width: 100%; 
+margin-top: 25px; 
+} 
+
+.calendario-card { 
+width: 100%; 
+padding: 25px; 
+} 
+
+.calendario-header { 
+width: 100%; 
+display: flex; 
+align-items: center; 
+justify-content: space-between; 
+margin-bottom: 25px; 
+} 
+
+.calendario-header h2 { 
+margin: 0; 
+color: var(--verde-oscuro); 
+font-size: 1.5rem; 
+text-align: center; 
+} 
+
+.calendario-navegacion { 
+width: 42px; 
+height: 42px; 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+background: var(--grad-verde); 
+color: var(--verde-oscuro); 
+border: 1px solid var(--verde-borde); 
+border-radius: 14px; 
+text-decoration: none; 
+font-size: 1.375rem; 
+font-weight: 700; 
+transition: transform 0.3s ease, box-shadow 0.3s ease; 
+} 
+
+.calendario-navegacion:hover { 
+transform: translateY(-3px); 
+box-shadow: var(--sombra-hover); 
+} 
+
+.calendario-semana, 
+.calendario-dias { 
+width: 100%; 
+display: grid; 
+grid-template-columns: repeat(7, 1fr); 
+gap: 8px; 
+} 
+
+.calendario-semana { 
+margin-bottom: 8px; 
+} 
+
+.calendario-semana div { 
+padding: 10px; 
+color: var(--texto-suave); 
+font-size: 0.8125rem; 
+font-weight: 700; 
+text-align: center; 
+text-transform: uppercase; 
+} 
+
+.dia-calendario { 
+min-height: 85px; 
+display: flex; 
+flex-direction: column; 
+align-items: flex-start; 
+justify-content: space-between; 
+padding: 10px; 
+background: linear-gradient(135deg, #F9FCFF 0%, #EBF4FD 100%); 
+border: 1px solid var(--azul-borde); 
+border-radius: 14px; 
+transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; 
+} 
+
+.dia-calendario:not(.dia-vacio):hover { 
+background: var(--grad-verde); 
+border-color: var(--verde-borde); 
+transform: translateY(-3px); 
+box-shadow: var(--sombra); 
+} 
+
+.dia-vacio { 
+background: transparent; 
+border: none; 
+box-shadow: none; 
+} 
+
+.numero-dia { 
+width: 30px; 
+height: 30px; 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+color: var(--texto); 
+font-size: 0.875rem; 
+font-weight: 700; 
+border-radius: 50%; 
+} 
+
+.dia-hoy { 
+background: var(--grad-verde); 
+border: 1px solid var(--verde-borde); 
+border-left: 5px solid var(--verde-acento); 
+} 
+
+.dia-hoy .numero-dia { 
+background-color: var(--verde); 
+color: var(--verde-oscuro); 
+} 
+
+.dia-con-eventos { 
+border-color: var(--verde-borde); 
+} 
+
+.indicadores-dia { 
+width: 100%; 
+display: flex; 
+align-items: center; 
+gap: 5px; 
+min-height: 24px; 
+} 
+
+.indicador-cita, 
+.indicador-recordatorio { 
+width: 25px; 
+height: 25px; 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+background-color: var(--azul-icono); 
+border-radius: 8px; 
+font-size: 0.8125rem; 
+} 
+
+.indicador-recordatorio { 
+background-color: var(--amarillo-icono); 
+} 
+
+.calendario-referencias { 
+width: 100%; 
+display: flex; 
+align-items: center; 
+gap: 25px; 
+margin-top: 20px; 
+padding-top: 18px; 
+border-top: 1px solid var(--borde); 
+} 
+
+.calendario-referencias div { 
+display: flex; 
+align-items: center; 
+gap: 7px; 
+color: var(--texto-suave); 
+font-size: 0.8125rem; 
+} 
+
+.calendario-referencias div span:first-child { 
+font-size: 1rem; 
+} 
+
+.calendario-actividades { 
+width: 100%; 
+margin-top: 30px; 
+} 
+
+.calendario-actividades .section-title { 
+margin-bottom: 18px; 
+} 
+
+.calendario-actividades .section-title h2 { 
+margin: 0; 
+color: var(--texto); 
+font-size: 1.375rem; 
+} 
+
+.calendario-lista { 
+width: 100%; 
+display: flex; 
+flex-direction: column; 
+gap: 14px; 
+} 
+
+.calendario-actividad { 
+width: 100%; 
+display: grid; 
+grid-template-columns: 54px minmax(0, 1fr) auto; 
+align-items: center; 
+gap: 16px; 
+padding: 18px; 
+} 
+
+.actividad-detalle { 
+min-width: 0; 
+display: flex; 
+flex-direction: column; 
+gap: 5px; 
+} 
+
+.actividad-detalle h3 { 
+margin: 0; 
+color: var(--c-titulo); 
+font-size: 1rem; 
+} 
+
+.actividad-detalle p { 
+margin: 0; 
+color: var(--texto-suave); 
+font-size: 0.8125rem; 
+} 
+
+.actividad-datos { 
+display: flex; 
+flex-wrap: wrap; 
+gap: 12px; 
+color: var(--texto-suave); 
+font-size: 0.8125rem; 
+} 
+
+
+/* ========================================================= 
+22. CONSEJO DEL DÍA Y DATO CURIOSO 
+========================================================= */ 
+
+.contenido-diario { 
+display: grid; 
+grid-template-columns: 1fr 1fr; 
+gap: 20px; 
+margin-top: 28px; 
+margin-bottom: 50px; 
+} 
+
+.contenido-diario-card { 
+display: flex; 
+align-items: center; 
+gap: 17px; 
+padding: 21px; 
+min-height: 135px; 
+} 
+
+.contenido-diario-texto { 
+flex: 1; 
+} 
+
+.contenido-diario-texto h2 { 
+margin: 0 0 8px 0; 
+font-size: 1.1875rem; 
+font-weight: 800; 
+color: var(--c-titulo); 
+} 
+
+.contenido-diario-texto p { 
+margin: 0; 
+font-size: 0.875rem; 
+line-height: 1.6; 
+color: var(--texto); 
+max-width: 500px; 
+} 
+
+
+/* ========================================================= 
+23. RESPONSIVE - TABLET 
+========================================================= */ 
+
+/* Entre 701 y 1000 px: barra lateral más angosta */ 
+@media (max-width: 1000px) { 
+
+.sidebar { 
+width: 210px; 
+} 
+
+.sidebar-logo h1 { 
+font-size: 1.4rem; 
+} 
+
+.sidebar nav a { 
+padding: 12px 12px; 
+font-size: 0.875rem; 
+} 
+
+.main-content { 
+margin-left: 210px; 
+width: calc(100% - 210px); 
+padding: 24px; 
+} 
+
+.calendario-page, 
+.mascotas-page, 
+.vacunas-page, 
+.main-content.citas-page, 
+.main-content.alimentacion-page, 
+.main-content.recordatorios-page { 
+width: calc(100% - 210px); 
+} 
+
+.summary-cards, 
+.mascotas-grid, 
+.salud-opciones { 
+grid-template-columns: repeat(2, minmax(0, 1fr)); 
+} 
+
+.vacunas-grid, 
+.citas-grid, 
+.alimentacion-grid, 
+.recordatorios-grid, 
+.desparasitacion-lista, 
+.historial-lista { 
+grid-template-columns: 1fr; 
+} 
+} 
+
+@media (max-width: 900px) { 
+
+.actividades-grid { 
+grid-template-columns: 1fr; 
+} 
+
+.calendario-dias { 
+gap: 5px; 
+} 
+
+.dia-calendario { 
+min-height: 70px; 
+padding: 7px; 
+} 
+
+.calendario-actividad { 
+grid-template-columns: 54px minmax(0, 1fr); 
+} 
+
+.calendario-actividad .actividad-estado { 
+grid-column: 2; 
+width: fit-content; 
+} 
+} 
+
+@media (max-width: 750px) { 
+
+.contenido-diario { 
+grid-template-columns: 1fr; 
+margin-bottom: 40px; 
+} 
+} 
+
+
+/* ========================================================= 
+24. RESPONSIVE - CELULAR 
+========================================================= */ 
+
+@media (max-width: 700px) { 
+
+.dashboard { 
+display: block; 
+} 
+
+.sidebar { 
+width: 100%; 
+height: auto; 
+min-height: auto; 
+position: relative; 
+border-right: none; 
+border-bottom: 1px solid var(--borde); 
+overflow: visible; 
+} 
+
+.sidebar-logo { 
+padding: 18px; 
+} 
+
+.sidebar nav { 
+flex-direction: row; 
+overflow-x: auto; 
+padding: 10px; 
+gap: 5px; 
+} 
+
+.sidebar nav a { 
+width: auto; 
+white-space: nowrap; 
+font-size: 0.875rem; 
+padding: 10px 12px; 
+} 
+
+.sidebar-footer { 
+display: block; 
+margin-top: 0; 
+padding: 8px 10px; 
+} 
+
+.sidebar-footer a { 
+width: auto; 
+justify-content: center; 
+padding: 10px 12px; 
+font-size: 0.875rem; 
+} 
+
+.main-content, 
+.calendario-page, 
+.mascotas-page, 
+.vacunas-page, 
+.main-content.citas-page, 
+.main-content.alimentacion-page, 
+.main-content.recordatorios-page { 
+margin-left: 0; 
+width: 100%; 
+padding: 20px 15px; 
+} 
+
+.top-header { 
+padding: 17px; 
+align-items: flex-start; 
+} 
+
+.top-header h2 { 
+font-size: 1.25rem; 
+} 
+
+.welcome-card { 
+flex-direction: column; 
+text-align: center; 
+gap: 20px; 
+padding: 25px 20px; 
+} 
+
+.welcome-card h2 { 
+font-size: 1.3rem; 
+} 
+
+.welcome-animals { 
+font-size: 3.1rem; 
+} 
+
+.summary-cards, 
+.mascotas-grid, 
+.perfil-datos, 
+.perfil-usuario-datos, 
+.salud-opciones, 
+.mascota-form { 
+grid-template-columns: 1fr; 
+} 
+
+.page-header { 
+flex-direction: column; 
+align-items: flex-start; 
+padding: 20px; 
+} 
+
+.page-header h1, 
+.page-header h2 { 
+font-size: 1.3rem; 
+} 
+
+.btn-agregar { 
+width: 100%; 
+text-align: center; 
+} 
+
+.vacunas-section, 
+.citas-section, 
+.alimentacion-section, 
+.desparasitacion-seccion, 
+.desparasitacion-formulario, 
+.historial-formulario { 
+padding: 20px 15px; 
+} 
+
+.cita-card, 
+.alimentacion-card, 
+.recordatorio-card, 
+.desparasitacion-card, 
+.historial-card { 
+padding: 17px; 
+} 
+
+.recordatorios-page .form-card, 
+.form-card { 
+padding: 22px 18px; 
+} 
+
+.recordatorio-icon { 
+width: 50px; 
+height: 50px; 
+min-width: 50px; 
+} 
+
+.recordatorio-info { 
+flex-direction: column; 
+align-items: flex-start; 
+} 
+
+.form-row { 
+grid-column: auto; 
+grid-template-columns: 1fr; 
+gap: 18px; 
+} 
+
+.form-group:has(textarea) { 
+grid-column: auto; 
+} 
+
+.form-buttons { 
+grid-column: auto; 
+flex-direction: column; 
+} 
+
+.btn-cancelar, 
+.btn-guardar, 
+.btn-principal { 
+width: 100%; 
+text-align: center; 
+} 
+
+.mascota-perfil-card { 
+padding: 25px 18px; 
+} 
+
+.mascota-perfil-foto { 
+width: 110px; 
+height: 110px; 
+font-size: 3.9rem; 
+} 
+
+.mascota-perfil-card h1 { 
+font-size: 1.5625rem; 
+} 
+
+.salud-mascota { 
+margin-top: 30px; 
+padding-top: 20px; 
+} 
+
+.salud-mascota h2 { 
+font-size: 1.25rem; 
+} 
+
+.salud-opciones { 
+gap: 15px; 
+} 
+
+.salud-card { 
+min-height: 170px; 
+padding: 20px 15px; 
+} 
+
+.vacuna-card { 
+padding: 17px; 
+flex-direction: column; 
+align-items: center; 
+text-align: center; 
+} 
+
+.historial-card-encabezado { 
+align-items: flex-start; 
+} 
+
+.perfil-usuario { 
+padding: 10px 0 30px; 
+} 
+
+.perfil-usuario-card { 
+padding: 25px 18px; 
+border-radius: 18px; 
+} 
+
+.perfil-usuario-card h1 { 
+font-size: 1.5625rem; 
+} 
+
+.perfil-usuario-datos { 
+gap: 14px; 
+} 
+
+.perfil-usuario-dato { 
+padding: 15px; 
+} 
+
+.perfil-usuario-botones { 
+flex-direction: column; 
+width: 100%; 
+} 
+
+.perfil-usuario-botones .btn-agregar, 
+.perfil-usuario-botones .btn-cancelar { 
+width: 100%; 
+} 
+
+.login-container { 
+padding: 15px; 
+background-image: none; 
+} 
+
+.login-card { 
+padding: 28px 20px; 
+border-radius: var(--radio); 
+} 
+
+.logo h1 { 
+font-size: 1.8rem; 
+} 
+
+.recordar { 
+flex-direction: column; 
+align-items: flex-start; 
+} 
+} 
+
+@media (max-width: 600px) { 
+
+.actividad-card { 
+padding: 16px; 
+} 
+
+.actividad-card-header { 
+align-items: flex-start; 
+} 
+
+.actividad-card-header h3 { 
+font-size: 1rem; 
+} 
+
+.actividad-item { 
+grid-template-columns: 1fr; 
+gap: 10px; 
+} 
+
+.actividad-fecha { 
+flex-direction: row; 
+align-items: center; 
+gap: 10px; 
+padding-right: 0; 
+padding-bottom: 8px; 
+border-right: none; 
+border-bottom: 1px solid var(--c-borde); 
+} 
+
+.actividad-estado { 
+width: fit-content; 
+} 
+
+.calendario-card { 
+padding: 15px; 
+} 
+
+.calendario-header h2 { 
+font-size: 1.1875rem; 
+} 
+
+.calendario-navegacion { 
+width: 36px; 
+height: 36px; 
+font-size: 1.125rem; 
+} 
+
+.calendario-semana, 
+.calendario-dias { 
+gap: 3px; 
+} 
+
+.calendario-semana div { 
+padding: 6px 2px; 
+font-size: 0.75rem; 
+} 
+
+.dia-calendario { 
+min-height: 55px; 
+padding: 5px; 
+border-radius: 8px; 
+} 
+
+.numero-dia { 
+width: 25px; 
+height: 25px; 
+font-size: 0.75rem; 
+} 
+
+.indicadores-dia { 
+gap: 2px; 
+min-height: 20px; 
+} 
+
+.indicador-cita, 
+.indicador-recordatorio { 
+width: 20px; 
+height: 20px; 
+font-size: 0.75rem; 
+} 
+
+.calendario-referencias { 
+flex-wrap: wrap; 
+gap: 12px; 
+} 
+
+.calendario-actividad { 
+grid-template-columns: 40px minmax(0, 1fr); 
+padding: 14px; 
+gap: 10px; 
+} 
+
+.actividad-tipo-icono { 
+width: 38px; 
+height: 38px; 
+font-size: 1.125rem; 
+} 
+
+.actividad-detalle h3 { 
+font-size: 0.875rem; 
+} 
+
+.actividad-datos { 
+flex-direction: column; 
+gap: 4px; 
+} 
+} 
+
+
+/* ========================================================= 
+25. RESPONSIVE - CELULARES PEQUEÑOS 
+========================================================= */ 
+
+@media (max-width: 450px) { 
+
+.contenido-diario-card { 
+padding: 17px; 
+gap: 13px; 
+} 
+
+.contenido-diario-icono { 
+width: 46px; 
+height: 46px; 
+min-width: 46px; 
+font-size: 1.5rem; 
+} 
+
+.contenido-diario-texto h2 { 
+font-size: 1.0625rem; 
+} 
+
+.contenido-diario-texto p { 
+font-size: 0.8125rem; 
+line-height: 1.5; 
+} 
+} 
+
+@media (max-width: 400px) { 
+
+.main-content, 
+.calendario-page, 
+.mascotas-page, 
+.vacunas-page, 
+.main-content.citas-page, 
+.main-content.alimentacion-page, 
+.main-content.recordatorios-page { 
+padding: 15px 10px; 
+} 
+
+.login-card { 
+padding: 24px 16px; 
+} 
+
+.mascotas { 
+font-size: 2.5rem; 
+} 
+
+.welcome-card { 
+padding: 20px 15px; 
+} 
+
+.summary-card { 
+padding: 17px; 
+} 
+
+.form-card { 
+padding: 20px 14px; 
+} 
+
+.cita-card, 
+.alimentacion-card, 
+.recordatorio-card { 
+flex-direction: column; 
+align-items: center; 
+text-align: center; 
+} 
+
+.cita-info, 
+.alimentacion-info, 
+.recordatorio-content { 
+width: 100%; 
+} 
+
+.recordatorio-info { 
+align-items: center; 
+} 
+
+.desparasitacion-seccion, 
+.desparasitacion-formulario, 
+.historial-formulario { 
+padding: 18px 13px; 
+} 
+
+.desparasitacion-card, 
+.historial-card { 
+padding: 15px; 
+} 
+
+.historial-icono { 
+width: 48px; 
+height: 48px; 
+min-width: 48px; 
+} 
+
+.salud-card { 
+min-height: 160px; 
+} 
+
+.salud-icon { 
+width: 58px; 
+height: 58px; 
+min-width: 58px; 
+font-size: 1.75rem; 
+} 
+
+.salud-card h3 { 
+font-size: 1rem; 
+} 
+} 
+
+
+/* ========================================================= 
+26. EXTRAS DE DISEÑO 
+========================================================= */ 
+
+/* ---------- 26.1 Entrada suave del dashboard ---------- 
+Un solo momento de animación al cargar, escalonado. 
+"backwards" evita que bloquee el efecto hover después. */ 
+
+@keyframes aparecer { 
+from { 
+opacity: 0; 
+transform: translateY(14px); 
+} 
+} 
+
+.welcome-card, 
+.summary-card, 
+.actividad-card, 
+.contenido-diario-card { 
+animation: aparecer 0.6s ease backwards; 
+} 
+
+.summary-card:nth-child(1) { animation-delay: 0.10s; } 
+.summary-card:nth-child(2) { animation-delay: 0.18s; } 
+.summary-card:nth-child(3) { animation-delay: 0.26s; } 
+
+.actividad-card:nth-child(1) { animation-delay: 0.32s; } 
+.actividad-card:nth-child(2) { animation-delay: 0.40s; } 
+
+.consejo-card { animation-delay: 0.46s; } 
+.dato-card { animation-delay: 0.54s; } 
+
+
+/* ---------- 26.2 Estados vacíos más amables ---------- */ 
+
+.sin-mascotas > div, 
+.sin-vacunas-icon, 
+.sin-citas-icon, 
+.sin-alimentacion-icon, 
+.empty-icon { 
+width: 84px; 
+height: 84px; 
+margin: 0 auto 16px; 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+background: var(--verde-icono); 
+border-radius: 24px; 
+box-shadow: 0 4px 10px rgba(47, 107, 90, 0.10); 
+font-size: 2.6rem; 
+} 
+
+.sin-mascotas, 
+.sin-vacunas, 
+.sin-citas, 
+.sin-alimentacion, 
+.empty-state, 
+.desparasitacion-vacio, 
+.historial-vacio { 
+padding: 50px 24px; 
+} 
+
+.sin-vacunas-icon, 
+.sin-alimentacion-icon { 
+background: var(--amarillo-icono); 
+} 
+
+
+/* ---------- 26.3 Detalles finos ---------- */ 
+
+::selection { 
+background: var(--verde); 
+color: var(--verde-oscuro); 
+} 
+
+html { 
+scrollbar-width: thin; 
+scrollbar-color: var(--trazo-suave) transparent; 
+} 
+
+::-webkit-scrollbar { 
+width: 10px; 
+height: 10px; 
+} 
+
+::-webkit-scrollbar-thumb { 
+background: var(--trazo-suave); 
+border-radius: 10px; 
+border: 2px solid transparent; 
+background-clip: padding-box; 
+} 
+
+::-webkit-scrollbar-thumb:hover { 
+background: var(--verde-acento); 
+} 
+
+
+/* ========================================================= 
+28. ÍCONOS DE LÍNEA (reemplazan a los emojis) 
+El emoji del HTML se oculta y se dibuja un ícono de línea 
+del color de cada tarjeta, como en el mockup. 
+========================================================= */ 
+
+.vacuna-icon, 
+.sin-vacunas-icon, 
+.salud-card:nth-child(1) .salud-icon { 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+font-size: 0; 
+line-height: 0; 
+color: transparent; 
+} 
+
+.vacuna-icon::before, 
+.sin-vacunas-icon::before, 
+.salud-card:nth-child(1) .salud-icon::before { 
+content: ""; 
+display: block; 
+width: 56%; 
+height: 56%; 
+background-color: var(--c-titulo); 
+-webkit-mask: var(--ico-jeringa) center / contain no-repeat; 
+mask: var(--ico-jeringa) center / contain no-repeat; 
+} 
+
+.cita-icon, 
+.sin-citas-icon, 
+.actividad-card:nth-child(1) .actividad-icon, 
+.indicador-cita { 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+font-size: 0; 
+line-height: 0; 
+color: transparent; 
+} 
+
+.cita-icon::before, 
+.sin-citas-icon::before, 
+.actividad-card:nth-child(1) .actividad-icon::before, 
+.indicador-cita::before { 
+content: ""; 
+display: block; 
+width: 56%; 
+height: 56%; 
+background-color: var(--c-titulo); 
+-webkit-mask: var(--ico-estetoscopio) center / contain no-repeat; 
+mask: var(--ico-estetoscopio) center / contain no-repeat; 
+} 
+
+.alimentacion-icon, 
+.sin-alimentacion-icon { 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+font-size: 0; 
+line-height: 0; 
+color: transparent; 
+} 
+
+.alimentacion-icon::before, 
+.sin-alimentacion-icon::before { 
+content: ""; 
+display: block; 
+width: 56%; 
+height: 56%; 
+background-color: var(--c-titulo); 
+-webkit-mask: var(--ico-tazon) center / contain no-repeat; 
+mask: var(--ico-tazon) center / contain no-repeat; 
+} 
+
+.recordatorio-icon, 
+.actividad-card:nth-child(2) .actividad-icon, 
+.indicador-recordatorio { 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+font-size: 0; 
+line-height: 0; 
+color: transparent; 
+} 
+
+.recordatorio-icon::before, 
+.actividad-card:nth-child(2) .actividad-icon::before, 
+.indicador-recordatorio::before { 
+content: ""; 
+display: block; 
+width: 56%; 
+height: 56%; 
+background-color: var(--c-titulo); 
+-webkit-mask: var(--ico-campana) center / contain no-repeat; 
+mask: var(--ico-campana) center / contain no-repeat; 
+} 
+
+.historial-icono, 
+.salud-card:nth-child(3) .salud-icon { 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+font-size: 0; 
+line-height: 0; 
+color: transparent; 
+} 
+
+.historial-icono::before, 
+.salud-card:nth-child(3) .salud-icon::before { 
+content: ""; 
+display: block; 
+width: 56%; 
+height: 56%; 
+background-color: var(--c-titulo); 
+-webkit-mask: var(--ico-portapapeles) center / contain no-repeat; 
+mask: var(--ico-portapapeles) center / contain no-repeat; 
+} 
+
+.salud-card:nth-child(2) .salud-icon { 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+font-size: 0; 
+line-height: 0; 
+color: transparent; 
+} 
+
+.salud-card:nth-child(2) .salud-icon::before { 
+content: ""; 
+display: block; 
+width: 56%; 
+height: 56%; 
+background-color: var(--c-titulo); 
+-webkit-mask: var(--ico-pastilla) center / contain no-repeat; 
+mask: var(--ico-pastilla) center / contain no-repeat; 
+} 
+
+.consejo-card .contenido-diario-icono { 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+font-size: 0; 
+line-height: 0; 
+color: transparent; 
+} 
+
+.consejo-card .contenido-diario-icono::before { 
+content: ""; 
+display: block; 
+width: 56%; 
+height: 56%; 
+background-color: var(--c-titulo); 
+-webkit-mask: var(--ico-bombilla) center / contain no-repeat; 
+mask: var(--ico-bombilla) center / contain no-repeat; 
+} 
+
+.dato-card .contenido-diario-icono { 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+font-size: 0; 
+line-height: 0; 
+color: transparent; 
+} 
+
+.dato-card .contenido-diario-icono::before { 
+content: ""; 
+display: block; 
+width: 56%; 
+height: 56%; 
+background-color: var(--c-titulo); 
+-webkit-mask: var(--ico-brillo) center / contain no-repeat; 
+mask: var(--ico-brillo) center / contain no-repeat; 
+} 
+
+.empty-icon, 
+.sin-mascotas > div { 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+font-size: 0; 
+line-height: 0; 
+color: transparent; 
+} 
+
+.empty-icon::before, 
+.sin-mascotas > div::before { 
+content: ""; 
+display: block; 
+width: 56%; 
+height: 56%; 
+background-color: var(--c-titulo); 
+-webkit-mask: var(--ico-huella) center / contain no-repeat; 
+mask: var(--ico-huella) center / contain no-repeat; 
+} 
+
+.summary-card[href*="vacuna"] > span { 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+font-size: 0; 
+line-height: 0; 
+color: transparent; 
+width: 54px; 
+height: 54px; 
+flex-shrink: 0; 
+background: var(--c-icono); 
+border-radius: 17px; 
+box-shadow: 0 4px 10px rgba(47, 107, 90, 0.10); 
+} 
+
+.summary-card[href*="vacuna"] > span::before { 
+content: ""; 
+display: block; 
+width: 52%; 
+height: 52%; 
+background-color: var(--c-titulo); 
+-webkit-mask: var(--ico-jeringa) center / contain no-repeat; 
+mask: var(--ico-jeringa) center / contain no-repeat; 
+} 
+
+.summary-card[href*="cita"] > span { 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+font-size: 0; 
+line-height: 0; 
+color: transparent; 
+width: 54px; 
+height: 54px; 
+flex-shrink: 0; 
+background: var(--c-icono); 
+border-radius: 17px; 
+box-shadow: 0 4px 10px rgba(47, 107, 90, 0.10); 
+} 
+
+.summary-card[href*="cita"] > span::before { 
+content: ""; 
+display: block; 
+width: 52%; 
+height: 52%; 
+background-color: var(--c-titulo); 
+-webkit-mask: var(--ico-estetoscopio) center / contain no-repeat; 
+mask: var(--ico-estetoscopio) center / contain no-repeat; 
+} 
+
+.summary-card[href*="aliment"] > span { 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+font-size: 0; 
+line-height: 0; 
+color: transparent; 
+width: 54px; 
+height: 54px; 
+flex-shrink: 0; 
+background: var(--c-icono); 
+border-radius: 17px; 
+box-shadow: 0 4px 10px rgba(47, 107, 90, 0.10); 
+} 
+
+.summary-card[href*="aliment"] > span::before { 
+content: ""; 
+display: block; 
+width: 52%; 
+height: 52%; 
+background-color: var(--c-titulo); 
+-webkit-mask: var(--ico-tazon) center / contain no-repeat; 
+mask: var(--ico-tazon) center / contain no-repeat; 
+} 
+
+.summary-card[href*="mascota"] > span { 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+font-size: 0; 
+line-height: 0; 
+color: transparent; 
+width: 54px; 
+height: 54px; 
+flex-shrink: 0; 
+background: var(--c-icono); 
+border-radius: 17px; 
+box-shadow: 0 4px 10px rgba(47, 107, 90, 0.10); 
+} 
+
+.summary-card[href*="mascota"] > span::before { 
+content: ""; 
+display: block; 
+width: 52%; 
+height: 52%; 
+background-color: var(--c-titulo); 
+-webkit-mask: var(--ico-huella) center / contain no-repeat; 
+mask: var(--ico-huella) center / contain no-repeat; 
+} 
+
+.summary-card[href*="recordatorio"] > span { 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+font-size: 0; 
+line-height: 0; 
+color: transparent; 
+width: 54px; 
+height: 54px; 
+flex-shrink: 0; 
+background: var(--c-icono); 
+border-radius: 17px; 
+box-shadow: 0 4px 10px rgba(47, 107, 90, 0.10); 
+} 
+
+.summary-card[href*="recordatorio"] > span::before { 
+content: ""; 
+display: block; 
+width: 52%; 
+height: 52%; 
+background-color: var(--c-titulo); 
+-webkit-mask: var(--ico-campana) center / contain no-repeat; 
+mask: var(--ico-campana) center / contain no-repeat; 
+} 
+
+.dato:nth-child(1) > span { 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+font-size: 0; 
+line-height: 0; 
+color: transparent; 
+width: 44px; 
+height: 44px; 
+min-width: 44px; 
+flex-shrink: 0; 
+background: var(--c-icono); 
+border-radius: 14px; 
+} 
+
+.dato:nth-child(1) > span::before { 
+content: ""; 
+display: block; 
+width: 56%; 
+height: 56%; 
+background-color: var(--c-titulo); 
+-webkit-mask: var(--ico-huella) center / contain no-repeat; 
+mask: var(--ico-huella) center / contain no-repeat; 
+} 
+
+.dato:nth-child(2) > span { 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+font-size: 0; 
+line-height: 0; 
+color: transparent; 
+width: 44px; 
+height: 44px; 
+min-width: 44px; 
+flex-shrink: 0; 
+background: var(--c-icono); 
+border-radius: 14px; 
+} 
+
+.dato:nth-child(2) > span::before { 
+content: ""; 
+display: block; 
+width: 56%; 
+height: 56%; 
+background-color: var(--c-titulo); 
+-webkit-mask: var(--ico-etiqueta) center / contain no-repeat; 
+mask: var(--ico-etiqueta) center / contain no-repeat; 
+} 
+
+.dato:nth-child(3) > span { 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+font-size: 0; 
+line-height: 0; 
+color: transparent; 
+width: 44px; 
+height: 44px; 
+min-width: 44px; 
+flex-shrink: 0; 
+background: var(--c-icono); 
+border-radius: 14px; 
+} 
+
+.dato:nth-child(3) > span::before { 
+content: ""; 
+display: block; 
+width: 56%; 
+height: 56%; 
+background-color: var(--c-titulo); 
+-webkit-mask: var(--ico-pastel) center / contain no-repeat; 
+mask: var(--ico-pastel) center / contain no-repeat; 
+} 
+
+.dato:nth-child(4) > span { 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+font-size: 0; 
+line-height: 0; 
+color: transparent; 
+width: 44px; 
+height: 44px; 
+min-width: 44px; 
+flex-shrink: 0; 
+background: var(--c-icono); 
+border-radius: 14px; 
+} 
+
+.dato:nth-child(4) > span::before { 
+content: ""; 
+display: block; 
+width: 56%; 
+height: 56%; 
+background-color: var(--c-titulo); 
+-webkit-mask: var(--ico-balanza) center / contain no-repeat; 
+mask: var(--ico-balanza) center / contain no-repeat; 
+} 
+
+.dato:nth-child(5) > span { 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+font-size: 0; 
+line-height: 0; 
+color: transparent; 
+width: 44px; 
+height: 44px; 
+min-width: 44px; 
+flex-shrink: 0; 
+background: var(--c-icono); 
+border-radius: 14px; 
+} 
+
+.dato:nth-child(5) > span::before { 
+content: ""; 
+display: block; 
+width: 56%; 
+height: 56%; 
+background-color: var(--c-titulo); 
+-webkit-mask: var(--ico-sexo) center / contain no-repeat; 
+mask: var(--ico-sexo) center / contain no-repeat; 
+} 
+
+.campo:has(input[type="email"]) .input-box > span { 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+font-size: 0; 
+line-height: 0; 
+color: transparent; 
+} 
+
+.campo:has(input[type="email"]) .input-box > span::before { 
+content: ""; 
+display: block; 
+width: 56%; 
+height: 56%; 
+background-color: var(--c-titulo); 
+-webkit-mask: var(--ico-sobre) center / contain no-repeat; 
+mask: var(--ico-sobre) center / contain no-repeat; 
+} 
+
+.campo:has(input[type="password"]) .input-box > span { 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+font-size: 0; 
+line-height: 0; 
+color: transparent; 
+} 
+
+.campo:has(input[type="password"]) .input-box > span::before { 
+content: ""; 
+display: block; 
+width: 56%; 
+height: 56%; 
+background-color: var(--c-titulo); 
+-webkit-mask: var(--ico-candado) center / contain no-repeat; 
+mask: var(--ico-candado) center / contain no-repeat; 
+} 
+
+.campo:has(input[type="text"]) .input-box > span { 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+font-size: 0; 
+line-height: 0; 
+color: transparent; 
+} 
+
+.campo:has(input[type="text"]) .input-box > span::before { 
+content: ""; 
+display: block; 
+width: 56%; 
+height: 56%; 
+background-color: var(--c-titulo); 
+-webkit-mask: var(--ico-usuario) center / contain no-repeat; 
+mask: var(--ico-usuario) center / contain no-repeat; 
+} 
+
+.campo:has(input[type="tel"]) .input-box > span { 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+font-size: 0; 
+line-height: 0; 
+color: transparent; 
+} 
+
+.campo:has(input[type="tel"]) .input-box > span::before { 
+content: ""; 
+display: block; 
+width: 56%; 
+height: 56%; 
+background-color: var(--c-titulo); 
+-webkit-mask: var(--ico-telefono) center / contain no-repeat; 
+mask: var(--ico-telefono) center / contain no-repeat; 
+} 
+
+
+/* ========================================================= 
+27. ACCESIBILIDAD 
+========================================================= */ 
+
+/* Modo de alto contraste: las sombras desaparecen, 
+así que los campos conservan un borde visible */ 
+@media (forced-colors: active) { 
+
+:is(.form-group, .form-grupo) :is(input, select, textarea), 
+.input-box { 
+border: 2px solid CanvasText; 
+} 
+} 
+
+/* Menos movimiento */ 
+@media (prefers-reduced-motion: reduce) { 
+
+*, 
+*::before, 
+*::after { 
+transition: none !important; 
+animation: none !important; 
+scroll-behavior: auto !important; 
+} 
+
+*:hover { 
+transform: none !important; 
+} 
+} 
+
+
+
+/* ========================================================= 
+PETMIGO - MEJORAS (pegar AL FINAL de tu hoja de estilos) 
+Solo CSS: no hay que tocar la estructura del HTML. 
+
+CAMBIA en el <head> de cada página tu <link> de fuentes por este: 
+
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"> 
+========================================================= */ 
+
+
+/* ========================================================= 
+A. TIPOGRAFÍA 
+Títulos: Fraunces (serif suave y elegante) 
+Texto: Plus Jakarta Sans (limpia y moderna) 
+========================================================= */ 
+
+:root {
+    --fuente-titulos: "Poppins", system-ui, sans-serif;
+    --fuente-texto: "Nunito", system-ui, sans-serif;
+}
+
+
+h1, h2, h3, h4 { 
+font-weight: 600; 
+letter-spacing: -0.01em; 
+line-height: 1.2; 
+} 
+
+.logo h1 { 
+font-size: 2.7rem; 
+font-weight: 700; 
+letter-spacing: -0.02em; 
+} 
+
+.sidebar-logo h1 { 
+font-size: 1.9rem; 
+font-weight: 700; 
+letter-spacing: -0.02em; 
+} 
+
+.contenido-diario-texto h2 { 
+font-weight: 600; 
+} 
+
+.summary-card strong { 
+font-family: var(--fuente-titulos); 
+font-size: 1.9rem; 
+font-weight: 600; 
+line-height: 1; 
+} 
+
+.page-kicker, 
+.section-kicker { 
+font-size: 0.7rem; 
+font-weight: 800; 
+letter-spacing: 0.16em; 
+text-transform: uppercase; 
+} 
+
+:is(.form-group, .form-grupo) label { 
+letter-spacing: 0.02em; 
+} 
+
+.btn-agregar, .btn-principal, .btn-guardar, .btn, .btn-login, 
+.btn-registrar, .registro a, .btn-secundario, .btn-cancelar, 
+.btn-perfil, .desparasitacion-formulario button, .historial-formulario button { 
+letter-spacing: 0.01em; 
+} 
+
+@media (max-width: 1000px) { 
+.sidebar-logo h1 { font-size: 1.55rem; } 
+} 
+
+
+/* ========================================================= 
+B. ÍCONOS NUEVOS (se suman a los que ya tienes) 
+========================================================= */ 
+
+:root { 
+--ico-mas: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E"); 
+--ico-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E"); 
+--ico-x: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 6 6 18M6 6l12 12'/%3E%3C/svg%3E"); 
+--ico-volver: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 12H5M12 19l-7-7 7-7'/%3E%3C/svg%3E"); 
+--ico-chev-izq: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m15 18-6-6 6-6'/%3E%3C/svg%3E"); 
+--ico-chev-der: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 18 6-6-6-6'/%3E%3C/svg%3E"); 
+--ico-ojo: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E"); 
+--ico-editar: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 20h9'/%3E%3Cpath d='M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z'/%3E%3C/svg%3E"); 
+--ico-usuario-mas: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='9' cy='7' r='4'/%3E%3Cpath d='M19 8v6M22 11h-6'/%3E%3C/svg%3E"); 
+/* Íconos extra: estetoscopio (citas), reloj, cámara, notas, ubicación, sexo */ 
+--ico-estetoscopio: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 2v2M5 2v2'/%3E%3Cpath d='M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1'/%3E%3Cpath d='M8 15a6 6 0 0 0 12 0v-3'/%3E%3Ccircle cx='20' cy='10' r='2'/%3E%3C/svg%3E"); 
+--ico-reloj: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 6v6l4 2'/%3E%3C/svg%3E"); 
+--ico-camara: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z'/%3E%3Ccircle cx='12' cy='13' r='3'/%3E%3C/svg%3E"); 
+--ico-notas: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/%3E%3Cpath d='M14 2v6h6M16 13H8M16 17H8M10 9H8'/%3E%3C/svg%3E"); 
+--ico-pin: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E"); 
+--ico-sexo: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 20h4M12 16v6M17 2h4v4M21 2l-5.46 5.46'/%3E%3Ccircle cx='12' cy='11' r='5'/%3E%3C/svg%3E"); 
+
+/* Tres huellitas (para el grupo de animalitos) */ 
+--ico-trio: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 24' fill='black'%3E%3Cg transform='rotate(-14 12 12)'%3E%3Cellipse cx='12' cy='16' rx='5.5' ry='4.5'/%3E%3Ccircle cx='5.5' cy='11' r='2.2'/%3E%3Ccircle cx='9' cy='6' r='2.2'/%3E%3Ccircle cx='15' cy='6' r='2.2'/%3E%3Ccircle cx='18.5' cy='11' r='2.2'/%3E%3C/g%3E%3Cg transform='translate(24 0)'%3E%3Cellipse cx='12' cy='16' rx='5.5' ry='4.5'/%3E%3Ccircle cx='5.5' cy='11' r='2.2'/%3E%3Ccircle cx='9' cy='6' r='2.2'/%3E%3Ccircle cx='15' cy='6' r='2.2'/%3E%3Ccircle cx='18.5' cy='11' r='2.2'/%3E%3C/g%3E%3Cg transform='translate(48 0) rotate(14 12 12)'%3E%3Cellipse cx='12' cy='16' rx='5.5' ry='4.5'/%3E%3Ccircle cx='5.5' cy='11' r='2.2'/%3E%3Ccircle cx='9' cy='6' r='2.2'/%3E%3Ccircle cx='15' cy='6' r='2.2'/%3E%3Ccircle cx='18.5' cy='11' r='2.2'/%3E%3C/g%3E%3C/svg%3E"); 
+} 
+
+
+/* ========================================================= 
+C. LOS ÍCONOS SE VEN MÁS ESTILIZADOS 
+1) La pieza del ícono pasa a ser una "baldosa" con brillo suave. 
+2) El dibujo lleva un degradado entre el color de acento 
+y el color de título de cada tarjeta (duotono). 
+Cambia los dos colores del degradado si quieres otro efecto, 
+o pon un solo color (background-image: none) para verlos lisos. 
+========================================================= */ 
+
+[class*="icon"], 
+.summary-card[href] > span, 
+.dato:nth-child(n) > span { 
+background-image: linear-gradient(150deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 62%); 
+background-color: var(--c-icono); 
+border: 1px solid var(--c-borde); 
+border-radius: 18px; 
+box-shadow: 0 6px 14px rgba(47, 107, 90, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.9); 
+} 
+
+[class*="icon"]::before, 
+.summary-card > span::before, 
+.dato > span::before, 
+.input-box > span::before { 
+background-image: linear-gradient(145deg, var(--c-acento) 0%, var(--c-titulo) 100%); 
+} 
+
+
+/* ========================================================= 
+D. ÍCONOS DONDE HABÍA EMOJI O NO HABÍA NADA 
+========================================================= */ 
+
+/* ---------- D.1 Animalitos de login y bienvenida (3 huellitas) ---------- */ 
+
+.mascotas, 
+.welcome-animals { 
+font-size: 0; 
+line-height: 0; 
+color: transparent; 
+} 
+
+.mascotas::before, 
+.welcome-animals::before { 
+content: ""; 
+display: block; 
+background-image: linear-gradient(90deg, #F0B77A 0%, #8CBFEA 50%, var(--verde-acento) 100%); 
+-webkit-mask: var(--ico-trio) center / contain no-repeat; 
+mask: var(--ico-trio) center / contain no-repeat; 
+} 
+
+.mascotas::before { width: 7rem; height: 2.35rem; } 
+.welcome-animals::before { width: 9rem; height: 3rem; } 
+
+@media (max-width: 700px) { 
+.welcome-animals::before { width: 7rem; height: 2.35rem; } 
+} 
+
+/* ---------- D.2 Fotos de mascota y avatar (solo si no hay <img>) ---------- */ 
+
+.mascota-foto:not(:has(img)), 
+.mascota-perfil-foto:not(:has(img)), 
+.perfil-avatar:not(:has(img)) { 
+font-size: 0; 
+line-height: 0; 
+color: transparent; 
+} 
+
+.mascota-foto:not(:has(img))::before, 
+.mascota-perfil-foto:not(:has(img))::before, 
+.perfil-avatar:not(:has(img))::before { 
+content: ""; 
+display: block; 
+width: 50%; 
+height: 50%; 
+background-image: linear-gradient(145deg, var(--c-acento) 0%, var(--c-titulo) 100%); 
+-webkit-mask: var(--ico-huella-llena) center / contain no-repeat; 
+mask: var(--ico-huella-llena) center / contain no-repeat; 
+} 
+
+.mascota-perfil-foto:not(:has(img))::before, 
+.perfil-avatar:not(:has(img))::before { 
+background-image: linear-gradient(145deg, var(--lila-acento) 0%, var(--lila-titulo) 100%); 
+} 
+
+.perfil-avatar:not(:has(img))::before { 
+-webkit-mask-image: var(--ico-usuario); 
+mask-image: var(--ico-usuario); 
+} 
+
+/* ---------- D.3 Botón de "agregar mascota" (el +) ---------- */ 
+
+.plus-icon { 
+font-size: 0; 
+line-height: 0; 
+color: transparent; 
+background-color: var(--amarillo-icono); 
+border-color: var(--amarillo-borde); 
+} 
+
+.plus-icon::before { 
+content: ""; 
+display: block; 
+width: 48%; 
+height: 48%; 
+background-image: linear-gradient(145deg, var(--amarillo-acento) 0%, var(--amarillo-titulo) 100%); 
+-webkit-mask: var(--ico-mas) center / contain no-repeat; 
+mask: var(--ico-mas) center / contain no-repeat; 
+} 
+
+/* ---------- D.4 Íconos del perfil de usuario ---------- */ 
+/* Orden: 1 usuario, 2 correo, 3 teléfono, 4 casa. Cámbialos si tu orden es otro. */ 
+
+.perfil-usuario-icono { 
+font-size: 0; 
+line-height: 0; 
+color: transparent; 
+} 
+
+.perfil-usuario-icono::before { 
+content: ""; 
+display: block; 
+width: 52%; 
+height: 52%; 
+-webkit-mask: var(--ico-usuario) center / contain no-repeat; 
+mask: var(--ico-usuario) center / contain no-repeat; 
+} 
+
+.perfil-usuario-dato:nth-child(2) .perfil-usuario-icono::before { -webkit-mask-image: var(--ico-sobre); mask-image: var(--ico-sobre); } 
+.perfil-usuario-dato:nth-child(3) .perfil-usuario-icono::before { -webkit-mask-image: var(--ico-telefono); mask-image: var(--ico-telefono); } 
+.perfil-usuario-dato:nth-child(4) .perfil-usuario-icono::before { -webkit-mask-image: var(--ico-casa); mask-image: var(--ico-casa); } 
+
+/* ---------- D.5 Calendario: tipo de actividad, leyenda y flechas ---------- */ 
+
+.actividad-tipo-icono { 
+font-size: 0; 
+line-height: 0; 
+color: transparent; 
+} 
+
+.actividad-tipo-icono::before { 
+content: ""; 
+display: block; 
+width: 52%; 
+height: 52%; 
+-webkit-mask: var(--ico-estetoscopio) center / contain no-repeat; 
+mask: var(--ico-estetoscopio) center / contain no-repeat; 
+} 
+
+.recordatorio-actividad .actividad-tipo-icono::before { 
+-webkit-mask-image: var(--ico-campana); 
+mask-image: var(--ico-campana); 
+} 
+
+.calendario-referencias div span:first-child { 
+width: 28px; 
+height: 28px; 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+font-size: 0; 
+line-height: 0; 
+color: transparent; 
+background-color: var(--azul-icono); 
+border: 1px solid var(--azul-borde); 
+border-radius: 9px; 
+} 
+
+.calendario-referencias div:nth-child(2) span:first-child { 
+background-color: var(--amarillo-icono); 
+border-color: var(--amarillo-borde); 
+} 
+
+.calendario-referencias div span:first-child::before { 
+content: ""; 
+display: block; 
+width: 58%; 
+height: 58%; 
+background-color: var(--azul-titulo); 
+-webkit-mask: var(--ico-estetoscopio) center / contain no-repeat; 
+mask: var(--ico-estetoscopio) center / contain no-repeat; 
+} 
+
+.calendario-referencias div:nth-child(2) span:first-child::before { 
+background-color: var(--amarillo-titulo); 
+-webkit-mask-image: var(--ico-campana); 
+mask-image: var(--ico-campana); 
+} 
+
+.calendario-navegacion { 
+font-size: 0; 
+line-height: 0; 
+color: transparent; 
+} 
+
+.calendario-navegacion::before { 
+content: ""; 
+display: block; 
+width: 52%; 
+height: 52%; 
+background-color: var(--verde-oscuro); 
+-webkit-mask: var(--ico-chev-der) center / contain no-repeat; 
+mask: var(--ico-chev-der) center / contain no-repeat; 
+} 
+
+.calendario-header .calendario-navegacion:first-child::before { 
+-webkit-mask-image: var(--ico-chev-izq); 
+mask-image: var(--ico-chev-izq); 
+} 
+
+/* ---------- D.6 "Ver todo" con flechita ---------- */ 
+
+.actividad-link::after { 
+content: ""; 
+display: inline-block; 
+width: 1em; 
+height: 1em; 
+margin-left: 4px; 
+vertical-align: -0.18em; 
+background-color: currentColor; 
+-webkit-mask: var(--ico-chev-der) center / contain no-repeat; 
+mask: var(--ico-chev-der) center / contain no-repeat; 
+} 
+
+/* ---------- D.7 Actividad vacía ---------- */ 
+
+.actividad-vacia span { 
+width: 60px; 
+height: 60px; 
+display: flex; 
+align-items: center; 
+justify-content: center; 
+font-size: 0; 
+line-height: 0; 
+color: transparent; 
+background-color: var(--c-icono); 
+border: 1px solid var(--c-borde); 
+border-radius: 18px; 
+} 
+
+.actividad-vacia span::before { 
+content: ""; 
+display: block; 
+width: 50%; 
+height: 50%; 
+background-image: linear-gradient(145deg, var(--c-acento) 0%, var(--c-titulo) 100%); 
+-webkit-mask: var(--ico-calendario) center / contain no-repeat; 
+mask: var(--ico-calendario) center / contain no-repeat; 
+} 
+
+/* ---------- D.8 Ícono en los títulos de sección ---------- */ 
+/* Cada título define su ícono con la variable --t-ico. */ 
+
+.summary-section > h2, 
+.mascotas-section > h2, 
+.vacunas-section > h2, 
+.salud-mascota > h2, 
+.section-title h2, 
+.form-header h2, 
+.welcome-card h2, 
+.page-header h1, 
+.page-header h2 { 
+display: flex; 
+align-items: center; 
+gap: 0.6rem; 
+--t-ico: var(--ico-brillo); 
+} 
+
+.summary-section > h2::before, 
+.mascotas-section > h2::before, 
+.vacunas-section > h2::before, 
+.salud-mascota > h2::before, 
+.section-title h2::before, 
+.form-header h2::before, 
+.welcome-card h2::before, 
+.page-header h1::before, 
+.page-header h2::before { 
+content: ""; 
+width: 1.1em; 
+height: 1.1em; 
+flex-shrink: 0; 
+background-image: linear-gradient(145deg, var(--verde-acento) 0%, var(--lila-acento) 100%); 
+-webkit-mask: var(--t-ico) center / contain no-repeat; 
+mask: var(--t-ico) center / contain no-repeat; 
+} 
+
+.mascotas-section > h2, 
+.welcome-card h2, 
+.page-header h1, 
+.page-header h2 { --t-ico: var(--ico-huella); } 
+.vacunas-section > h2 { --t-ico: var(--ico-jeringa); } 
+.salud-mascota > h2 { --t-ico: var(--ico-salud); } 
+.form-header h2 { --t-ico: var(--ico-portapapeles); } 
+.proximas-actividades .section-title h2 { --t-ico: var(--ico-calendario); } 
+.calendario-actividades .section-title h2 { --t-ico: var(--ico-cita-check); } 
+
+/* El encabezado de cada página toma el ícono de su sección */ 
+.vacunas-page .page-header h1, 
+.vacunas-page .page-header h2 { --t-ico: var(--ico-jeringa); } 
+.citas-page .page-header h1, 
+.citas-page .page-header h2 { --t-ico: var(--ico-estetoscopio); } 
+.alimentacion-page .page-header h1, 
+.alimentacion-page .page-header h2 { --t-ico: var(--ico-tazon); } 
+.recordatorios-page .page-header h1, 
+.recordatorios-page .page-header h2 { --t-ico: var(--ico-campana); } 
+.calendario-page .page-header h1, 
+.calendario-page .page-header h2 { --t-ico: var(--ico-calendario); } 
+
+/* ---------- D.9 Íconos en los botones ---------- */ 
+/* Si algún botón ya trae un emoji o símbolo dentro del texto del HTML, 
+quita aquí su línea para que no se repita. */ 
+
+.btn-agregar::before, 
+.btn-principal::before, 
+.btn-guardar::before, 
+.btn-cancelar::before, 
+.btn-secundario::before, 
+.btn-perfil::before, 
+.btn-registrar::before, 
+.registro a::before, 
+.desparasitacion-formulario button::before, 
+.historial-formulario button::before { 
+content: ""; 
+width: 1.15em; 
+height: 1.15em; 
+flex-shrink: 0; 
+background-color: currentColor; 
+-webkit-mask: var(--b-ico) center / contain no-repeat; 
+mask: var(--b-ico) center / contain no-repeat; 
+} 
+
+.btn-agregar { --b-ico: var(--ico-mas); } 
+.btn-principal, 
+.btn-guardar, 
+.desparasitacion-formulario button, 
+.historial-formulario button { --b-ico: var(--ico-check); } 
+.btn-cancelar { --b-ico: var(--ico-x); } 
+.btn-secundario { --b-ico: var(--ico-volver); } 
+.btn-perfil { --b-ico: var(--ico-ojo); } 
+.btn-registrar, 
+.registro a { --b-ico: var(--ico-usuario-mas); } 
+.perfil-usuario-botones .btn-agregar { --b-ico: var(--ico-editar); } 
+
+
+/* ========================================================= 
+E. CUADROS QUE SEPARAN SECCIONES 
+========================================================= */ 
+
+/* ---------- E.1 Tarjetas: la franja lateral ahora es una cinta 
+redondeada dentro de la tarjeta (queda más fino y elegante) ---------- */ 
+
+.contenido-diario-card, 
+.summary-card, 
+.mascota-card, 
+.salud-card, 
+.vacuna-card, 
+.cita-card, 
+.alimentacion-card, 
+.recordatorio-card, 
+.desparasitacion-card, 
+.historial-card, 
+.actividad-card, 
+.calendario-actividad, 
+.perfil-usuario-dato, 
+.dato, 
+.welcome-card, 
+.top-header, 
+.page-header { 
+border-left: 1px solid var(--c-borde); 
+border-radius: 24px; 
+box-shadow: 0 1px 0 rgba(255, 255, 255, 0.85) inset, 0 8px 22px rgba(47, 107, 90, 0.09); 
+} 
+
+.contenido-diario-card::before, 
+.summary-card::before, 
+.mascota-card::before, 
+.salud-card::before, 
+.vacuna-card::before, 
+.cita-card::before, 
+.alimentacion-card::before, 
+.recordatorio-card::before, 
+.desparasitacion-card::before, 
+.historial-card::before, 
+.actividad-card::before, 
+.calendario-actividad::before, 
+.perfil-usuario-dato::before, 
+.dato::before, 
+.welcome-card::before, 
+.top-header::before, 
+.page-header::before { 
+content: ""; 
+position: absolute; 
+left: 0; 
+top: 18%; 
+bottom: 18%; 
+width: 4px; 
+border-radius: 0 6px 6px 0; 
+background: linear-gradient(180deg, var(--c-acento) 0%, var(--c-titulo) 100%); 
+pointer-events: none; 
+} 
+
+/* ---------- E.2 Paneles grandes: barra de color arriba, 
+esquinas más amplias y brillo interior ---------- */ 
+
+.vacunas-section, 
+.citas-section, 
+.alimentacion-section, 
+.desparasitacion-seccion, 
+.desparasitacion-formulario, 
+.historial-formulario, 
+.calendario-card { 
+position: relative; 
+overflow: hidden; 
+border-radius: 28px; 
+box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset, 0 12px 30px rgba(47, 107, 90, 0.10); 
+--p-a: var(--azul-acento); 
+--p-b: var(--lila-acento); 
+} 
+
+.alimentacion-section { 
+--p-a: var(--amarillo-acento); 
+--p-b: var(--rosa-acento); 
+} 
+
+.desparasitacion-seccion, 
+.desparasitacion-formulario { 
+--p-a: var(--lila-acento); 
+--p-b: var(--rosa-acento); 
+} 
+
+.vacunas-section::before, 
+.citas-section::before, 
+.alimentacion-section::before, 
+.desparasitacion-seccion::before, 
+.desparasitacion-formulario::before, 
+.historial-formulario::before, 
+.calendario-card::before { 
+content: ""; 
+position: absolute; 
+top: 0; 
+left: 0; 
+right: 0; 
+height: 5px; 
+background: linear-gradient(90deg, var(--p-a) 0%, var(--p-b) 100%); 
+pointer-events: none; 
+} 
+
+@media (min-width: 701px) { 
+
+.vacunas-section, 
+.citas-section, 
+.alimentacion-section, 
+.desparasitacion-seccion, 
+.desparasitacion-formulario, 
+.historial-formulario { 
+padding: 32px 28px 28px; 
+} 
+} 
+
+/* ---------- E.3 Separadores con degradado en lugar de líneas planas ---------- */ 
+
+.section-title::after { 
+content: ""; 
+display: block; 
+height: 3px; 
+margin-top: 14px; 
+border-radius: 3px; 
+background: linear-gradient(90deg, var(--verde-acento) 0%, var(--lila-acento) 45%, transparent 100%); 
+opacity: 0.7; 
+} 
+
+.salud-mascota { 
+border-top: none; 
+} 
+
+.salud-mascota::before { 
+content: ""; 
+display: block; 
+height: 3px; 
+margin-bottom: 24px; 
+border-radius: 3px; 
+background: linear-gradient(90deg, var(--lila-acento) 0%, var(--azul-acento) 45%, transparent 100%); 
+opacity: 0.7; 
+} 
+
+.form-header { 
+border-bottom: 2px solid transparent; 
+border-image: linear-gradient(90deg, var(--verde-acento), var(--lila-acento), transparent) 1; 
+} 
+
+.calendario-referencias { 
+border-top: 2px solid transparent; 
+border-image: linear-gradient(90deg, var(--azul-acento), var(--lila-acento), transparent) 1; 
+} 
+
+/* ---------- E.4 Estados vacíos más suaves ---------- */ 
+
+.sin-mascotas, 
+.sin-vacunas, 
+.sin-citas, 
+.sin-alimentacion, 
+.empty-state, 
+.desparasitacion-vacio, 
+.historial-vacio { 
+border-radius: 28px; 
+border-width: 2px; 
+} 
+
+/* ---------- E.5 Botones con un brillo muy leve ---------- */ 
+
+.btn-agregar, .btn-principal, .btn-guardar, .btn, .btn-login, 
+.btn-registrar, .registro a, 
+.desparasitacion-formulario button, .historial-formulario button { 
+background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.30) 0%, rgba(255, 255, 255, 0) 100%); 
+box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55); 
+} 
+
+.btn-login { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), 0 8px 18px rgba(117, 194, 130, 0.45); } 
+.btn-registrar, 
+.registro a { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), 0 8px 18px rgba(182, 146, 203, 0.40); } 
+
+
+
+/* ========================================================= 
+PETMIGO - MEJORAS 2 (pegar AL FINAL, después de petmigo-mejoras.css) 
+1) Letra pequeña más grande, más firme y más legible 
+2) Fondo nuevo, más rico y con movimiento muy suave 
+Solo CSS, sin tocar el HTML. 
+========================================================= */ 
+
+
+/* ========================================================= 
+1. LETRA PEQUEÑA 
+========================================================= */ 
+
+/* Todo el sitio sube un poco (16px -> 17px). Como tu CSS usa rem, 
+cada texto crece en proporción. */ 
+html { 
+font-size: 106.25%; 
+} 
+
+/* Asegura que TODOS los textos usen la fuente nueva */ 
+body, 
+button, input, select, textarea, 
+p, span, a, label, li, small, strong, div { 
+font-family: var(--fuente-texto); 
+} 
+
+h1, h2, h3, h4 { 
+font-family: var(--fuente-titulos); 
+} 
+
+:root { 
+--texto: #26332C; 
+--texto-suave: #46544C; /* más oscuro: la letra chica se lee mejor */ 
+} 
+
+body { 
+font-weight: 500; 
+line-height: 1.65; 
+} 
+
+/* ---------- Textos secundarios (antes 12-14 px) ---------- */ 
+
+.logo p, 
+.login-card > p, 
+.section-title p, 
+.proximas-actividades .section-title p, 
+.form-header p, 
+.salud-mascota > p, 
+.perfil-usuario-subtitulo { 
+font-size: 1rem; 
+font-weight: 500; 
+} 
+
+.recordar, 
+.mascota-info p, 
+.dato p, 
+.summary-card p, 
+.vacuna-info p, 
+.cita-info p, 
+.alimentacion-info p, 
+.recordatorio-content p, 
+.desparasitacion-card p, 
+.historial-card p, 
+.contenido-diario-texto p, 
+.agregar-mascota-card p, 
+.actividad-info p, 
+.actividad-detalle p { 
+font-size: 0.975rem; 
+font-weight: 500; 
+line-height: 1.65; 
+} 
+
+.salud-card p, 
+.actividad-fecha strong, 
+.actividad-fecha span, 
+.actividad-datos, 
+.actividad-link, 
+.calendario-referencias div, 
+.perfil-usuario-dato span, 
+.historial-fecha, 
+.actividad-vacia p { 
+font-size: 0.9rem; 
+font-weight: 600; 
+} 
+
+.actividad-info > span { 
+font-size: 0.85rem; 
+} 
+
+.actividad-info h4 { 
+font-size: 1rem; 
+font-weight: 700; 
+} 
+
+.cita-estado, 
+.recordatorio-estado, 
+.recordatorio-info span, 
+.actividad-estado, 
+.calendario-actividad .actividad-estado { 
+font-size: 0.875rem; 
+font-weight: 700; 
+} 
+
+.calendario-semana div { 
+font-size: 0.82rem; 
+letter-spacing: 0.06em; 
+} 
+
+.numero-dia { 
+font-size: 0.95rem; 
+} 
+
+.page-kicker, 
+.section-kicker { 
+font-size: 0.78rem; 
+} 
+
+/* ---------- Formularios ---------- */ 
+
+:is(.form-group, .form-grupo) label { 
+font-size: 0.95rem; 
+} 
+
+:is(.form-group, .form-grupo) :is(input, select, textarea), 
+.input-box input { 
+font-size: 1rem; 
+font-weight: 500; 
+} 
+
+.input-box input::placeholder, 
+:is(.form-group, .form-grupo) :is(input, textarea)::placeholder { 
+font-weight: 500; 
+} 
+
+/* ---------- Menú lateral ---------- */ 
+
+.sidebar nav a, 
+.sidebar-footer a { 
+font-size: 1rem; 
+font-weight: 600; 
+} 
+
+/* ---------- Celular: se conserva legible ---------- */ 
+
+@media (max-width: 700px) { 
+
+.sidebar nav a, 
+.sidebar-footer a { 
+font-size: 0.95rem; 
+} 
+
+.contenido-diario-texto p, 
+.salud-card p { 
+font-size: 0.925rem; 
+} 
+
+.calendario-semana div { 
+font-size: 0.72rem; 
+} 
+
+.numero-dia { 
+font-size: 0.8rem; 
+} 
+} 
+
+
+/* ========================================================= 
+2. FONDO 
+Capa A (html::before): malla de color con manchas grandes 
+que se mueven despacio. 
+Capa B (body::before): solo el patrón de huellas y corazones, 
+más fino y discreto. 
+Capa C (body::after): tus adornos laterales, ahora más suaves. 
+========================================================= */ 
+
+/* ---------- El contenido se asienta sobre el fondo ---------- */ 
+
+.main-content { 
+position: relative; 
+} 
+
+/* Fondo del panel lateral: transparencia ligera, deja ver el color */ 
+.sidebar { 
+background-image: 
+url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 120 120'%3E%3Cg fill='%23E8C79D' fill-opacity='0.16' transform='rotate(-20 60 60)'%3E%3Cellipse cx='60' cy='70' rx='11' ry='9'/%3E%3Ccircle cx='45' cy='55' r='4.5'/%3E%3Ccircle cx='54' cy='47' r='4.5'/%3E%3Ccircle cx='66' cy='47' r='4.5'/%3E%3Ccircle cx='75' cy='55' r='4.5'/%3E%3C/g%3E%3C/svg%3E"), 
+linear-gradient(180deg, #FFFDF7 0%, #F3FAF6 55%, #E6F5EC 100%); 
+background-size: 100px 100px, auto; 
+} 
+
+/* ---------- Si el celular va lento o el usuario prefiere 
+menos movimiento, el fondo se queda quieto ---------- */ 
+
+@media (max-width: 700px) { 
+
+html::before, 
+body::before { 
+animation: none; 
+} 
+
+body::before { 
+inset: 0; 
+will-change: auto; 
+} 
+
+/* En celular solo quedan las colinas */ 
+html::after { 
+background-image: var(--deco-colinas); 
+background-repeat: repeat-x; 
+background-size: 100% 110px; 
+background-position: center bottom; 
+} 
+} 
+
+@media (prefers-reduced-motion: reduce) { 
+
+html::before { 
+animation: none !important; 
+} 
+} 
+
+
+/* ========================================================= 
+29. ÍCONOS EXTRA 
+========================================================= */ 
+
+/* ---------- 29.1 Etiquetas de formulario con ícono ---------- 
+Cada etiqueta cambia su puntito por un ícono según el tipo de campo 
+(fecha, hora, correo, teléfono, archivo...) o por su atributo name 
+(peso, raza, vacuna, medicamento...). Si un campo no coincide con nada, 
+conserva el puntito de siempre. */ 
+
+:is(.form-group, .form-grupo):has([name*="especie" i]) label::before, 
+:is(.form-group, .form-grupo):has([name*="raza" i]) label::before, 
+:is(.form-group, .form-grupo):has([name*="sexo" i]) label::before, 
+:is(.form-group, .form-grupo):has([name*="genero" i]) label::before, 
+:is(.form-group, .form-grupo):has([name*="peso" i]) label::before, 
+:is(.form-group, .form-grupo):has([name*="vacuna" i]) label::before, 
+:is(.form-group, .form-grupo):has([name*="medic" i]) label::before, 
+:is(.form-group, .form-grupo):has([name*="desparas" i]) label::before, 
+:is(.form-group, .form-grupo):has([name*="producto" i]) label::before, 
+:is(.form-group, .form-grupo):has([name*="veterin" i]) label::before, 
+:is(.form-group, .form-grupo):has([name*="clinica" i]) label::before, 
+:is(.form-group, .form-grupo):has([name*="motivo" i]) label::before, 
+:is(.form-group, .form-grupo):has([name*="aliment" i]) label::before, 
+:is(.form-group, .form-grupo):has([name*="comida" i]) label::before, 
+:is(.form-group, .form-grupo):has([name*="porcion" i]) label::before, 
+:is(.form-group, .form-grupo):has([name*="recordatorio" i]) label::before, 
+:is(.form-group, .form-grupo):has([name*="direccion" i]) label::before, 
+:is(.form-group, .form-grupo):has([name*="ciudad" i]) label::before, 
+:is(.form-group, .form-grupo):has(textarea) label::before, 
+:is(.form-group, .form-grupo):has(input[type="date"]) label::before, 
+:is(.form-group, .form-grupo):has(input[type="datetime-local"]) label::before, 
+:is(.form-group, .form-grupo):has(input[type="time"]) label::before, 
+:is(.form-group, .form-grupo):has(input[type="email"]) label::before, 
+:is(.form-group, .form-grupo):has(input[type="tel"]) label::before, 
+:is(.form-group, .form-grupo):has(input[type="password"]) label::before, 
+:is(.form-group, .form-grupo):has(input[type="file"]) label::before { 
+width: 1.15em; 
+height: 1.15em; 
+border-radius: 0; 
+box-shadow: none; 
+background: linear-gradient(145deg, var(--f-acento) 0%, var(--f-titulo) 100%); 
+-webkit-mask-position: center; 
+-webkit-mask-size: contain; 
+-webkit-mask-repeat: no-repeat; 
+mask-position: center; 
+mask-size: contain; 
+mask-repeat: no-repeat; 
+} 
+
+:is(.form-group, .form-grupo):has([name*="especie" i]) label::before { 
+-webkit-mask-image: var(--ico-huella); 
+mask-image: var(--ico-huella); 
+} 
+
+:is(.form-group, .form-grupo):has([name*="raza" i]) label::before { 
+-webkit-mask-image: var(--ico-etiqueta); 
+mask-image: var(--ico-etiqueta); 
+} 
+
+:is(.form-group, .form-grupo):has([name*="sexo" i]) label::before, 
+:is(.form-group, .form-grupo):has([name*="genero" i]) label::before { 
+-webkit-mask-image: var(--ico-sexo); 
+mask-image: var(--ico-sexo); 
+} 
+
+:is(.form-group, .form-grupo):has([name*="peso" i]) label::before { 
+-webkit-mask-image: var(--ico-balanza); 
+mask-image: var(--ico-balanza); 
+} 
+
+:is(.form-group, .form-grupo):has([name*="vacuna" i]) label::before { 
+-webkit-mask-image: var(--ico-jeringa); 
+mask-image: var(--ico-jeringa); 
+} 
+
+:is(.form-group, .form-grupo):has([name*="medic" i]) label::before, 
+:is(.form-group, .form-grupo):has([name*="desparas" i]) label::before, 
+:is(.form-group, .form-grupo):has([name*="producto" i]) label::before { 
+-webkit-mask-image: var(--ico-pastilla); 
+mask-image: var(--ico-pastilla); 
+} 
+
+:is(.form-group, .form-grupo):has([name*="veterin" i]) label::before, 
+:is(.form-group, .form-grupo):has([name*="clinica" i]) label::before, 
+:is(.form-group, .form-grupo):has([name*="motivo" i]) label::before { 
+-webkit-mask-image: var(--ico-estetoscopio); 
+mask-image: var(--ico-estetoscopio); 
+} 
+
+:is(.form-group, .form-grupo):has([name*="aliment" i]) label::before, 
+:is(.form-group, .form-grupo):has([name*="comida" i]) label::before, 
+:is(.form-group, .form-grupo):has([name*="porcion" i]) label::before { 
+-webkit-mask-image: var(--ico-tazon); 
+mask-image: var(--ico-tazon); 
+} 
+
+:is(.form-group, .form-grupo):has([name*="recordatorio" i]) label::before { 
+-webkit-mask-image: var(--ico-campana); 
+mask-image: var(--ico-campana); 
+} 
+
+:is(.form-group, .form-grupo):has([name*="direccion" i]) label::before, 
+:is(.form-group, .form-grupo):has([name*="ciudad" i]) label::before { 
+-webkit-mask-image: var(--ico-pin); 
+mask-image: var(--ico-pin); 
+} 
+
+:is(.form-group, .form-grupo):has(textarea) label::before { 
+-webkit-mask-image: var(--ico-notas); 
+mask-image: var(--ico-notas); 
+} 
+
+:is(.form-group, .form-grupo):has(input[type="date"]) label::before, 
+:is(.form-group, .form-grupo):has(input[type="datetime-local"]) label::before { 
+-webkit-mask-image: var(--ico-calendario); 
+mask-image: var(--ico-calendario); 
+} 
+
+:is(.form-group, .form-grupo):has(input[type="time"]) label::before { 
+-webkit-mask-image: var(--ico-reloj); 
+mask-image: var(--ico-reloj); 
+} 
+
+:is(.form-group, .form-grupo):has(input[type="email"]) label::before { 
+-webkit-mask-image: var(--ico-sobre); 
+mask-image: var(--ico-sobre); 
+} 
+
+:is(.form-group, .form-grupo):has(input[type="tel"]) label::before { 
+-webkit-mask-image: var(--ico-telefono); 
+mask-image: var(--ico-telefono); 
+} 
+
+:is(.form-group, .form-grupo):has(input[type="password"]) label::before { 
+-webkit-mask-image: var(--ico-candado); 
+mask-image: var(--ico-candado); 
+} 
+
+:is(.form-group, .form-grupo):has(input[type="file"]) label::before { 
+-webkit-mask-image: var(--ico-camara); 
+mask-image: var(--ico-camara); 
+} 
+
+
+/* ---------- 29.2 Títulos de sección que no tenían ícono ---------- */ 
+
+.citas-section h2, 
+.alimentacion-section h2, 
+.desparasitacion-seccion h2, 
+.desparasitacion-formulario h2, 
+.historial-registros h2, 
+.historial-formulario h2, 
+.recordatorios-section h2 { 
+display: flex; 
+align-items: center; 
+gap: 0.6rem; 
+--t-ico: var(--ico-brillo); 
+} 
+
+.citas-section h2::before, 
+.alimentacion-section h2::before, 
+.desparasitacion-seccion h2::before, 
+.desparasitacion-formulario h2::before, 
+.historial-registros h2::before, 
+.historial-formulario h2::before, 
+.recordatorios-section h2::before { 
+content: ""; 
+width: 1.1em; 
+height: 1.1em; 
+flex-shrink: 0; 
+background-image: linear-gradient(145deg, var(--verde-acento) 0%, var(--lila-acento) 100%); 
+-webkit-mask: var(--t-ico) center / contain no-repeat; 
+mask: var(--t-ico) center / contain no-repeat; 
+} 
+
+.citas-section h2 { --t-ico: var(--ico-estetoscopio); } 
+.alimentacion-section h2 { --t-ico: var(--ico-tazon); } 
+.desparasitacion-seccion h2, 
+.desparasitacion-formulario h2 { --t-ico: var(--ico-pastilla); } 
+.historial-registros h2, 
+.historial-formulario h2 { --t-ico: var(--ico-portapapeles); } 
+.recordatorios-section h2 { --t-ico: var(--ico-campana); } 
+
+
+/* ---------- 29.3 Estados con ícono (pendiente = reloj, listo = check) ---------- 
+Si el texto de esos estados ya trae un emoji en el HTML, borra este bloque 
+o quita el emoji del HTML para que no se repita. */ 
+
+.cita-estado::before, 
+.recordatorio-estado::before, 
+.actividad-estado::before { 
+content: ""; 
+display: inline-block; 
+width: 1em; 
+height: 1em; 
+margin-right: 6px; 
+flex-shrink: 0; 
+vertical-align: -0.15em; 
+background-color: currentColor; 
+-webkit-mask: var(--ico-reloj) center / contain no-repeat; 
+mask: var(--ico-reloj) center / contain no-repeat; 
+} 
+
+.recordatorio-estado.completado::before, 
+.actividad-estado:not(.pendiente)::before { 
+-webkit-mask-image: var(--ico-check); 
+mask-image: var(--ico-check); 
+} 
+
+
+/* ---------- 29.4 Login y registro ---------- */ 
+
+/* Huellita junto al nombre de la marca */ 
+.logo h1::after { 
+content: ""; 
+display: inline-block; 
+width: 0.8em; 
+height: 0.8em; 
+margin-left: 0.25em; 
+vertical-align: -0.04em; 
+background-image: linear-gradient(145deg, var(--verde-acento) 0%, var(--lila-acento) 100%); 
+-webkit-mask: var(--ico-huella-llena) center / contain no-repeat; 
+mask: var(--ico-huella-llena) center / contain no-repeat; 
+} 
+
+/* Campos de dirección o ciudad llevan ubicación, no usuario */ 
+.campo:has(input[name*="direc" i], input[name*="ciudad" i]) .input-box > span::before { 
+-webkit-mask-image: var(--ico-pin); 
+mask-image: var(--ico-pin); 
+} 
+
+
+/* =========================================================
+   CORRECCIÓN FINAL - PERFIL DE USUARIO PETMIGO
+   Basado en perfil.php real:
+   1. Nombre       -> usuario
+   2. Apellido     -> usuario
+   3. Correo       -> sobre
+   4. Teléfono     -> teléfono
+   No existe un campo "casa/dirección" en este perfil.
+   ========================================================= */
+
+.perfil-usuario-dato .perfil-usuario-icono {
+    font-size: 0;
+    line-height: 0;
+    color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.perfil-usuario-dato .perfil-usuario-icono::before {
+    content: "";
+    display: block;
+    width: 52%;
+    height: 52%;
+    background-image: linear-gradient(145deg, var(--c-acento) 0%, var(--c-titulo) 100%);
+    -webkit-mask: var(--ico-usuario) center / contain no-repeat;
+    mask: var(--ico-usuario) center / contain no-repeat;
+}
+
+/* NOMBRE */
+.perfil-usuario-datos > .perfil-usuario-dato:nth-child(1) .perfil-usuario-icono::before {
+    -webkit-mask-image: var(--ico-usuario);
+    mask-image: var(--ico-usuario);
+}
+
+/* APELLIDO */
+.perfil-usuario-datos > .perfil-usuario-dato:nth-child(2) .perfil-usuario-icono::before {
+    -webkit-mask-image: var(--ico-usuario);
+    mask-image: var(--ico-usuario);
+}
+
+/* CORREO */
+.perfil-usuario-datos > .perfil-usuario-dato:nth-child(3) .perfil-usuario-icono::before {
+    -webkit-mask-image: var(--ico-sobre);
+    mask-image: var(--ico-sobre);
+}
+
+/* TELÉFONO */
+.perfil-usuario-datos > .perfil-usuario-dato:nth-child(4) .perfil-usuario-icono::before {
+    -webkit-mask-image: var(--ico-telefono);
+    mask-image: var(--ico-telefono);
+}
+
+/* El perfil de usuario NO tiene campo casa/dirección */
+.perfil-usuario-datos > .perfil-usuario-dato:nth-child(n+5) .perfil-usuario-icono::before {
+    -webkit-mask-image: var(--ico-usuario);
+    mask-image: var(--ico-usuario);
+}
+
+
+/* =========================================================
+   FONDO COMPLETAMENTE FIJO
+   ========================================================= */
+
+html::before,
+html::after,
+body::before,
+body::after {
+    animation: none !important;
+    -webkit-animation: none !important;
+}
+
+body {
+    background-attachment: fixed !important;
+}
+
+
+/* =========================================================
+   CORRECCIÓN FINAL - ÍCONOS DEL PERFIL DE MASCOTA
+   Basado en la misma estructura visual del perfil de usuario:
+   - baldosa consistente
+   - centrado
+   - ícono al 52%
+   - degradado del color de la tarjeta
+   Se conservan los íconos propios de mascota.
+   ========================================================= */
+
+/* Contenedor de cada ícono del perfil de mascota */
+.perfil-datos > .dato > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 0;
+    line-height: 0;
+    color: transparent;
+
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    flex-shrink: 0;
+
+    background: var(--c-icono);
+    background-image: linear-gradient(
+        150deg,
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(255, 255, 255, 0) 62%
+    );
+
+    border: 1px solid var(--c-borde);
+    border-radius: 17px;
+
+    box-shadow:
+        0 6px 14px rgba(47, 107, 90, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* Ícono interno: misma proporción que el perfil de usuario */
+.perfil-datos > .dato > span::before {
+    content: "";
+    display: block;
+
+    width: 52%;
+    height: 52%;
+
+    background-image: linear-gradient(
+        145deg,
+        var(--c-acento) 0%,
+        var(--c-titulo) 100%
+    );
+
+    -webkit-mask: var(--ico-huella) center / contain no-repeat;
+    mask: var(--ico-huella) center / contain no-repeat;
+}
+
+/* 1. Nombre de la mascota */
+.perfil-datos > .dato:nth-child(1) > span::before {
+    -webkit-mask-image: var(--ico-huella);
+    mask-image: var(--ico-huella);
+}
+
+/* 2. Especie / raza */
+.perfil-datos > .dato:nth-child(2) > span::before {
+    -webkit-mask-image: var(--ico-etiqueta);
+    mask-image: var(--ico-etiqueta);
+}
+
+/* 3. Edad / fecha de nacimiento */
+.perfil-datos > .dato:nth-child(3) > span::before {
+    -webkit-mask-image: var(--ico-pastel);
+    mask-image: var(--ico-pastel);
+}
+
+/* 4. Peso */
+.perfil-datos > .dato:nth-child(4) > span::before {
+    -webkit-mask-image: var(--ico-balanza);
+    mask-image: var(--ico-balanza);
+}
+
+/* 5. Sexo */
+.perfil-datos > .dato:nth-child(5) > span::before {
+    -webkit-mask-image: var(--ico-sexo);
+    mask-image: var(--ico-sexo);
+}
+
+/* Evita que reglas generales vuelvan a mostrar el emoji */
+.perfil-datos > .dato > span {
+    overflow: hidden;
+}
+
+/* En móvil conserva la misma estructura, solo reduce ligeramente el tamaño */
+@media (max-width: 700px) {
+    .perfil-datos > .dato > span {
+        width: 46px;
+        height: 46px;
+        min-width: 46px;
+    }
+}
+
+
+
+
+
+/* =====================================================
+   CORRECCIÓN FINAL - ICONOS PERFIL DE MASCOTA
+   ===================================================== */
+
+/* Caja del icono */
+.perfil-datos .dato > span {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 17px;
+    background: var(--c-icono);
+
+    font-size: 0;
+    line-height: 0;
+    color: transparent;
+
+    flex-shrink: 0;
+}
+
+/* Icono interno */
+.perfil-datos .dato > span::before {
+    content: "";
+    display: block;
+
+    width: 52%;
+    height: 52%;
+
+    background-image: linear-gradient(
+        145deg,
+        var(--c-acento) 0%,
+        var(--c-titulo) 100%
+    );
+}
+
+/* 1. Fecha de nacimiento */
+.perfil-datos .dato:nth-child(1) > span::before {
+    -webkit-mask: var(--ico-pastel) center / contain no-repeat;
+    mask: var(--ico-pastel) center / contain no-repeat;
+}
+
+/* 2. Sexo */
+.perfil-datos .dato:nth-child(2) > span::before {
+    -webkit-mask: var(--ico-sexo) center / contain no-repeat;
+    mask: var(--ico-sexo) center / contain no-repeat;
+}
+
+/* 3. Peso */
+.perfil-datos .dato:nth-child(3) > span::before {
+    -webkit-mask: var(--ico-balanza) center / contain no-repeat;
+    mask: var(--ico-balanza) center / contain no-repeat;
+}
+
+/* 4. Especie */
+.perfil-datos .dato:nth-child(4) > span::before {
+    -webkit-mask: var(--ico-huella) center / contain no-repeat;
+    mask: var(--ico-huella) center / contain no-repeat;
+}
+
+/* 5. Raza */
+.perfil-datos .dato:nth-child(5) > span::before {
+    -webkit-mask: var(--ico-etiqueta) center / contain no-repeat;
+    mask: var(--ico-etiqueta) center / contain no-repeat;
+}
+
+
+html::before {
+    animation: fondo-deriva 42s ease-in-out infinite alternate !important;
+}
+
+body::before {
+    animation: patron-avanza 220s linear infinite !important;
+}
+
+/* 2) Capa A (malla de color): manchas más tenues y difuminadas */
+html::before {
+    opacity: 0.55;
+    filter: blur(6px);
+}
+
+/* 3) Capa B (colinas, ondas, huellas gigantes, rastro): más discreta */
+html::after {
+    opacity: 0.5;
+}
+
+/* 4) Capa C (patrón de huesos, huellas, pelotas...): casi un susurro */
+body::before {
+    opacity: 0.4;
+}
+
+/* 5) Capa D (adornos de los costados): más apagados */
+body::after {
+    opacity: 0.45;
+}
+
+/* 6) Respeta "menos movimiento" del sistema (accesibilidad) */
+@media (prefers-reduced-motion: reduce) {
+    html::before,
+    body::before {
+        animation: none !important;
+    }
+}
